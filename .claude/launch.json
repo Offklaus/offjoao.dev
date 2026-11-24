@@ -10,7 +10,7 @@
     {
       "name": "portfolio-pages",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["vite", "preview", "--base", "/joaodev/", "--port", "4173", "--strictPort"],
+      "runtimeArgs": ["vite", "preview", "--base", "/offjoao.dev/", "--port", "4173", "--strictPort"],
       "port": 4173
     }
   ]

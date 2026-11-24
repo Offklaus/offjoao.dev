@@ -9,7 +9,7 @@ import './styles/pages.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* basename = subcaminho do deploy (/joaodev/ no GitHub Pages, / no dev) */}
+    {/* basename = subcaminho do deploy (/offjoao.dev/ no GitHub Pages, / no dev) */}
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
