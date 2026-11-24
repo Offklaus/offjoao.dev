@@ -1,6 +1,7 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
 import SmartLink from '../components/SmartLink'
+import { withBase } from '../content/base'
 import { destaque } from '../content/site'
 
 /**
@@ -44,7 +45,7 @@ export default function Destaque() {
           <div className="destaque-acoes">
             <a
               className="turn turn--next"
-              href={destaque.artigo.href}
+              href={withBase(destaque.artigo.href)}
               target="_blank"
               rel="noopener noreferrer"
             >

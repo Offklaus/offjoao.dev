@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { withBase } from '../content/base'
 
 const isExternal = (href) => /^https?:\/\//i.test(href)
 const isFile = (href) => /\.[a-z0-9]+$/i.test(href)
@@ -33,7 +34,7 @@ export default function SmartLink({ href, download, fallback: Fallback = 'span',
   }
 
   return (
-    <a className={className} href={href} download={download || undefined}>
+    <a className={className} href={withBase(href)} download={download || undefined}>
       {children}
     </a>
   )

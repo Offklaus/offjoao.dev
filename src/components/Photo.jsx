@@ -1,3 +1,5 @@
+import { withBase } from '../content/base'
+
 /**
  * Foto/print com borda rasgada. Sem `image.src`, mostra o placeholder entre colchetes.
  * O tamanho vem do layout (é o elemento elástico da página) · tilt: graus ·
@@ -16,7 +18,7 @@ export default function Photo({ image, tilt = 0, tape, className = '' }) {
       <div className="photo" style={tilt ? { '--photo-tilt': `${tilt}deg` } : undefined}>
         {image.src ? (
           <img
-            src={image.src}
+            src={withBase(image.src)}
             alt={image.alt}
             loading="lazy"
             decoding="async"

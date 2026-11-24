@@ -75,5 +75,16 @@ contato ou API própria, ela entra como nova feature com Node.js + Express em `s
 
 ## Deploy
 
-Qualquer host estático serve. Configure o fallback de SPA (todas as rotas → `index.html`)
-para os links diretos (`/projetos`, `/contato`…) funcionarem.
+O site é publicado no **GitHub Pages** pelo workflow
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) a cada push na `main`
+(lint, testes, build e publicação). Ele fica em `https://offklaus.github.io/joaodev/`.
+
+- O build usa `BASE_PATH=/<repositório>/`; arquivos de `public/` passam por
+  `withBase()` (`src/content/base.js`) e o React Router usa o mesmo `basename`.
+- Links diretos (`/joaodev/perfil`…) funcionam porque o workflow copia o `index.html`
+  para `404.html`.
+- Para testar o build do Pages localmente: `$env:BASE_PATH='/joaodev/'; npm run build`
+  e depois `npx vite preview --base /joaodev/`.
+
+Em outro host estático, rode `npm run build` sem `BASE_PATH` e configure o fallback de
+SPA (todas as rotas → `index.html`).
