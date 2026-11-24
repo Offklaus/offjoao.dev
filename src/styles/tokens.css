@@ -1,0 +1,46 @@
+/* Tokens do design "Revista 2002". Nenhum componente usa cor ou fonte solta. */
+:root {
+  color-scheme: dark;
+
+  /* Cores */
+  --c-desk: #000;
+  --c-page: #0a0b0b;
+  --c-ink: #f2efe8;
+  --c-ink-strong: #fff;
+  --c-ink-soft: #d9d6cf;
+  --c-rule: #8c8a84;
+  --c-dark: #0e0e0e;
+  --c-photo: #161717;
+  --c-paper-white: #ddd7ca;
+  --c-paper-white-edge: #fbf9f4;
+  --c-paper-news: #cfc8b8;
+  --c-paper-news-edge: #f4f1ea;
+  --c-tape: rgb(214 208 192 / 0.55);
+  --c-ink-glow: rgb(242 239 232 / 0.55);
+  --c-ink-halo: rgb(242 239 232 / 0.12);
+
+  /* Fontes */
+  --f-display: Anton, Impact, 'Arial Narrow', sans-serif;
+  --f-serif: 'Instrument Serif', Georgia, serif;
+  --f-sans: 'Bricolage Grotesque', system-ui, sans-serif;
+  --f-mono: 'Space Mono', ui-monospace, 'Courier New', monospace;
+
+  /* Medidas */
+  --gutter: clamp(20px, 5vw, 96px);
+  --tap: 44px;
+  --ease-page: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Uma página, uma tela (Princípio VI): tamanhos que escalam com a ALTURA da tela */
+  --fs-body: clamp(14px, 2svh, 18px);
+  --fs-lede: clamp(15px, 2.1svh, 19px);
+  --fs-lead: clamp(19px, 3.5svh, 32px);
+  --fs-subtitle: clamp(16px, 2.9svh, 26px);
+  --gap-sheet: clamp(10px, 3svh, 36px);
+  --gap-block: clamp(8px, 2.2svh, 24px);
+}
+
+@media (max-width: 560px) {
+  :root {
+    --gutter: 16px;
+  }
+}

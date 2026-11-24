@@ -1,0 +1,303 @@
+/* Base, mesa, página e moldura comum (cabeçalho, menu, rodapé de folhear). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--c-desk);
+  color: var(--c-ink);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--c-ink);
+}
+
+a:hover {
+  color: var(--c-ink-strong);
+}
+
+a:focus-visible,
+button:focus-visible,
+main:focus-visible {
+  outline: 2px solid var(--c-ink);
+  outline-offset: 3px;
+}
+
+main:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 16px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--c-ink);
+  color: var(--c-dark);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+  color: var(--c-dark);
+}
+
+/* A página ocupa a tela inteira, sem moldura em volta.
+   Princípio VI: exatamente a altura da tela e nada rola. */
+.desk {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--c-page);
+  overflow: hidden;
+}
+
+/* src/components/Book.jsx */
+.book {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* A página mostrada (src/components/Leaf.jsx) */
+.page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--c-ink);
+  text-shadow:
+    0 0 1px var(--c-ink-glow),
+    0 0 8px var(--c-ink-halo);
+  background-color: var(--c-page);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 22% 18%, rgb(255 255 255 / 0.035), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 78% 82%, rgb(255 255 255 / 0.025), transparent 70%),
+    radial-gradient(ellipse 40% 25% at 60% 45%, rgb(255 255 255 / 0.015), transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .turn {
+    transition: none;
+  }
+}
+
+/* Área elástica entre cabeçalho e rodapé. Só rola como último recurso (tela abaixo de
+   360×640 ou zoom do navegador), para nunca cortar conteúdo. */
+.content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  padding: clamp(10px, 3svh, 32px) var(--gutter);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+/* Cabeçalho */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 32px;
+  padding: clamp(4px, 1svh, 12px) var(--gutter);
+  border-bottom: 4px double var(--c-rule);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  font-family: var(--f-sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.logo:hover {
+  color: var(--c-ink);
+}
+
+.logo-domain {
+  margin-left: 6px;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 10px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.menu a:hover {
+  color: var(--c-ink-strong);
+  text-decoration: underline;
+}
+
+.menu a[aria-current='page'] {
+  background: var(--c-ink);
+  color: var(--c-dark);
+  text-shadow: none;
+}
+
+/* Rótulos pequenos */
+.kicker {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+}
+
+/* Rodapé de folhear */
+.turnbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding: clamp(6px, 1.6svh, 16px) var(--gutter);
+  border-top: 1px solid var(--c-rule);
+}
+
+.turn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 20px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--c-ink);
+  background: transparent;
+  border: 2px solid var(--c-ink);
+  transition: transform 0.15s;
+}
+
+.turn:hover {
+  color: var(--c-dark);
+  background: var(--c-ink);
+  text-shadow: none;
+  transform: translateY(-2px);
+}
+
+.turn--next {
+  color: var(--c-dark);
+  background: var(--c-ink);
+  text-shadow: none;
+}
+
+.turn--next:hover {
+  color: var(--c-dark);
+  background: var(--c-ink-strong);
+}
+
+.turn.is-off {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.folio {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--c-ink-soft);
+}
+
+/* Celular: cabeçalho e rodapé compactos para sobrar altura ao conteúdo */
+@media (max-width: 560px) {
+  .logo {
+    min-height: var(--tap);
+  }
+
+  .menu ul {
+    gap: 0 2px;
+  }
+
+  .menu a {
+    padding: 0 7px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .turnbar {
+    gap: 6px;
+  }
+
+  .turn {
+    min-height: var(--tap);
+    padding: 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* "Voltar à capa ↺" é o botão mais largo: o rodapé precisa caber numa linha */
+  .folio {
+    letter-spacing: 0.04em;
+  }
+}
