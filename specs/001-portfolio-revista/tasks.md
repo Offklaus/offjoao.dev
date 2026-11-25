@@ -271,3 +271,11 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 - [X] T078 Fotos e prints sem `clip-path` rasgado, moldura creme nem fita: contorno de 1px `--c-rule` (`src/styles/paper.css`, `src/components/Photo.jsx`); Perfil sem inclinação
 - [X] T079 Capa com a foto sem fundo (`public/foto-joao-recorte.webp`, rembg local + limpeza do halo do cabelo), `image.cutout` sem caixa e com a base/ombros esfumados por máscara
 - [X] T080 Conferir as 6 rotas sem rolagem nas 8 telas; `npm run lint`, `npm test`, `npm run build`
+
+## Phase 17: Entrada de página — colagem e máquina de escrever (FR-019, research.md R14)
+
+- [X] T081 Régua de tempo única (`src/motion/intro.js`) com testes do teto de 2 s, ritmo único por página e cascata (`src/motion/intro.test.js`)
+- [X] T082 `<Type>` (letras em `<span>`, cópia `sr-only`) + teste; `IntroContext` desligado sem `matchMedia` e com `prefers-reduced-motion`
+- [X] T083 `useIntro` no `Leaf`: cola os `.cut` (mola em `rotateY` da ponta esquerda + sombra) e bate as letras; `cancel()` na limpeza (StrictMode)
+- [X] T084 Aplicar `<Type>` nos textos das 6 páginas; `.capa-title > span`; "·" da stack só no fim
+- [X] T085 Conferir no Chrome: fim da entrada ≤ 2 s em todas as rotas, nenhuma letra invisível no fim, 48 combinações sem rolagem, menos movimento sem animação

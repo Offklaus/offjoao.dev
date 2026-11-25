@@ -1,6 +1,7 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
 import SmartLink from '../components/SmartLink'
+import Type from '../components/Type'
 import { projetos } from '../content/site'
 
 export default function Projetos() {
@@ -21,10 +22,16 @@ export default function Projetos() {
             <SmartLink className="card" href={projeto.url} fallback="div">
               <Photo image={projeto.image} />
               <h2 className="card-title">
-                <span className="kicker">{projeto.number}</span>{' '}
-                <span className="card-name">{projeto.name}</span>
+                <span className="kicker">
+                  <Type text={projeto.number} />
+                </span>{' '}
+                <span className="card-name">
+                  <Type text={projeto.name} />
+                </span>
               </h2>
-              <span className="card-desc">{projeto.description}</span>
+              <span className="card-desc">
+                <Type text={projeto.description} />
+              </span>
             </SmartLink>
           </li>
         ))}

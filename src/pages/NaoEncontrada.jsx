@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import Cut from '../components/Cut'
+import Type from '../components/Type'
 
 export default function NaoEncontrada() {
   return (
@@ -12,7 +13,9 @@ export default function NaoEncontrada() {
           não encontrada
         </Cut>
       </h1>
-      <p className="body-copy">Essa página foi arrancada da revista. Volte para a capa e folheie de novo.</p>
+      <p className="body-copy">
+        <Type text="Essa página foi arrancada da revista. Volte para a capa e folheie de novo." />
+      </p>
       <p>
         <Link className="turn turn--next" to="/">
           Voltar à capa

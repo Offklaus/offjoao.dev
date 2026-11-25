@@ -1,4 +1,5 @@
 import Photo from '../components/Photo'
+import Type from '../components/Type'
 import { capa, site } from '../content/site'
 
 /**
@@ -13,10 +14,19 @@ export default function Capa() {
     <div className="sheet capa">
       <div className="capa-main">
         <h1 className="capa-title">
-          <span>{first}</span> <span>{rest.join(' ')}</span>
+          <span>
+            <Type text={first} />
+          </span>{' '}
+          <span>
+            <Type text={rest.join(' ')} />
+          </span>
         </h1>
-        <span className="kicker">{site.role}</span>
-        <p className="lede">{capa.intro}</p>
+        <span className="kicker">
+          <Type text={site.role} />
+        </span>
+        <p className="lede">
+          <Type text={capa.intro} />
+        </p>
       </div>
 
       <Photo image={capa.photo} />

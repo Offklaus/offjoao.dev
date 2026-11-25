@@ -68,7 +68,7 @@ cada página aparece na ordem com o folio certo; na última, o botão volta à c
 6. **Given** um visitante que usa só o teclado, **When** navega com Tab e Enter, **Then**
    alcança e aciona todos os links com foco visível.
 7. **Given** qualquer página, **When** o visitante avança ou volta, **Then** a nova página
-   aparece na hora, sem animação.
+   aparece na hora, sem virar; o conteúdo entra em até 2 s (FR-019).
 
 ---
 
@@ -205,13 +205,21 @@ número, nome e descrição; cartões com link levam ao projeto.
   com foco visível e contraste adequado.
 - **FR-014**: Ao trocar de página, a visualização MUST voltar ao topo e o título da aba
   MUST indicar a página ("offjoão.dev — Perfil").
-- **FR-015**: A troca de página MUST ser imediata, sem animação de virar ou de entrada.
-  *(Revisão 2026-11-23: "tire a animação de revista, não gostei da forma que ficou".)*
+- **FR-015**: A troca de página MUST ser imediata, sem animação de virar.
+  *(Revisão 2026-11-23: "tire a animação de revista, não gostei da forma que ficou".
+  A entrada do conteúdo voltou em 2026-11-25 como FR-019.)*
 - **FR-016**: Cada página MUST caber inteira na tela, sem rolagem, em telas de 360×640 a
   1920×1080 pixels: textos se ajustam ao tamanho da tela e fotos encolhem para dar lugar
   ao texto. *(Revisão 2026-11-18: "realinhe o design pra não ter scroll na página".)*
 - ~~FR-017 / FR-018~~: virada de página animada e arraste da ponta — **removidos em
   2026-11-23** a pedido do dono (ver FR-015).
+- **FR-019**: Ao abrir cada página, o conteúdo MUST entrar em no máximo 2 s, com os mesmos
+  tempos e curvas em todas: os papéis rasgados dos títulos são colados de ponta a ponta,
+  da esquerda para a direita, e os textos são batidos letra a letra como numa máquina de
+  escrever, no mesmo ritmo e em cascata. O leitor de tela recebe o texto inteiro, nada
+  rola durante ou depois da entrada, e com `prefers-reduced-motion: reduce` tudo aparece
+  pronto. *(Revisão 2026-11-25: "crie uma animação que tenha no máximo 2 seg em cada
+  página [...] máquina de escrever [...] colada de ponta a ponta".)*
 
 ### Key Entities
 

@@ -87,6 +87,20 @@ fixam as escolhas técnicas.
   caber (anula o zoom do usuário, fere WCAG 1.4.4); dividir páginas longas em "subpáginas"
   (mais navegação, mais estado); `overflow: hidden` sem válvula (corta conteúdo).
 
+## R14 — Entrada de página: colagem e máquina de escrever (2026-11-25, FR-019)
+
+- **Decisão**: `motion` (gratuito) com `animate()` + `stagger()` num `useLayoutEffect` do
+  `Leaf` (`src/motion/useIntro.js`); tempos únicos em `src/motion/intro.js`. Papel: mola em
+  `rotateY` a partir da ponta esquerda (`transform-origin: 0 50%`, perspectiva 600px) +
+  sombra de "levantado" para a sombra normal. Texto: `<Type>` separa as letras em `<span>`
+  (cópia `sr-only` para leitor de tela) e cada letra aparece de uma vez, sem fade nem cursor.
+- **Por quê**: um ritmo só por página e cascata na ordem do texto cabem no teto de 2 s sem
+  digitar letra por letra de forma imperceptível; as letras já ocupam o lugar final, então
+  não há layout shift (Princípio VI).
+- **Alternativas rejeitadas**: `Typewriter`/`splitText` do Motion+ (pago); digitar tudo em
+  sequência (com ~350 letras no Destaque, passaria de 200 letras/s); CSS puro (não dá ritmo
+  por página nem cascata calculada).
+
 ## R13 — Sem animação de troca de página (revisão 2026-11-23, FR-015)
 
 - **Decision**: a troca de página é imediata. Removidos o motor de dobra (R12), a entrada

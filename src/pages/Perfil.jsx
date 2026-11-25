@@ -1,5 +1,6 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
+import Type from '../components/Type'
 import { perfil } from '../content/site'
 
 export default function Perfil() {
@@ -20,19 +21,23 @@ export default function Perfil() {
         <Photo image={perfil.photo} />
 
         <div className="perfil-text">
-          <p className="lead-serif">{perfil.lead}</p>
+          <p className="lead-serif">
+            <Type text={perfil.lead} />
+          </p>
           {perfil.paragrafos.map((texto) => (
             <p key={texto} className="body-copy">
-              {texto}
+              <Type text={texto} />
             </p>
           ))}
           <div className="stack-block">
             <h2 className="kicker" id="stack-titulo">
-              Stack
+              <Type text="Stack" />
             </h2>
             <ul className="stack-list" aria-labelledby="stack-titulo">
               {perfil.stack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li key={tech}>
+                  <Type text={tech} />
+                </li>
               ))}
             </ul>
           </div>

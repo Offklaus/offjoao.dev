@@ -1,6 +1,7 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
 import SmartLink from '../components/SmartLink'
+import Type from '../components/Type'
 import { withBase } from '../content/base'
 import { destaque } from '../content/site'
 
@@ -14,7 +15,9 @@ export default function Destaque() {
   return (
     <div className="sheet destaque">
       <div className="destaque-head">
-        <span className="kicker">{destaque.kicker}</span>
+        <span className="kicker">
+          <Type text={destaque.kicker} />
+        </span>
         <h1 className="title-cuts destaque-title">
           <Cut jag={1} tilt={1} font="serif" paper="white" size="clamp(18px, min(3vw, 5.5svh), 52px)">
             {antes}
@@ -30,16 +33,26 @@ export default function Destaque() {
 
       <div className="spread destaque-spread">
         <div className="destaque-text">
-          <p className="subtitulo">{destaque.subtitulo}</p>
+          <p className="subtitulo">
+            <Type text={destaque.subtitulo} />
+          </p>
 
           <div className="destaque-bloco">
-            <h2 className="kicker">O problema</h2>
-            <p className="body-copy">{destaque.problema}</p>
+            <h2 className="kicker">
+              <Type text="O problema" />
+            </h2>
+            <p className="body-copy">
+              <Type text={destaque.problema} />
+            </p>
           </div>
 
           <div className="destaque-bloco">
-            <h2 className="kicker">A solução</h2>
-            <p className="body-copy">{destaque.solucao}</p>
+            <h2 className="kicker">
+              <Type text="A solução" />
+            </h2>
+            <p className="body-copy">
+              <Type text={destaque.solucao} />
+            </p>
           </div>
 
           <div className="destaque-acoes">
@@ -63,12 +76,20 @@ export default function Destaque() {
           <Photo image={destaque.image} />
           <dl className="ficha">
             <div className="ficha-row">
-              <dt className="kicker">Tipo</dt>
-              <dd>{destaque.tipo}</dd>
+              <dt className="kicker">
+                <Type text="Tipo" />
+              </dt>
+              <dd>
+                <Type text={destaque.tipo} />
+              </dd>
             </div>
             <div className="ficha-row">
-              <dt className="kicker">Stack</dt>
-              <dd>{destaque.stack}</dd>
+              <dt className="kicker">
+                <Type text="Stack" />
+              </dt>
+              <dd>
+                <Type text={destaque.stack} />
+              </dd>
             </div>
           </dl>
         </div>

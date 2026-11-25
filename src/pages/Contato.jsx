@@ -1,5 +1,6 @@
 import Cut from '../components/Cut'
 import SmartLink from '../components/SmartLink'
+import Type from '../components/Type'
 import { contatos } from '../content/site'
 
 export default function Contato() {
@@ -18,10 +19,11 @@ export default function Contato() {
         {contatos.map((canal) => (
           <li key={canal.type}>
             <SmartLink className="channel" href={canal.href} download={canal.download}>
-              <span className="kicker">{canal.type}</span>
+              <span className="kicker">
+                <Type text={canal.type} />
+              </span>
               <span className="channel-label">
-                {canal.label}
-                {canal.href && <span aria-hidden="true">{canal.download ? ' ↓' : ' →'}</span>}
+                <Type text={canal.label} tail={canal.href ? (canal.download ? ' ↓' : ' →') : undefined} />
               </span>
             </SmartLink>
           </li>
