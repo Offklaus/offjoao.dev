@@ -136,7 +136,7 @@ lista de tecnologias.
 ### User Story 6 - Ver outros projetos (Priority: P2)
 
 Na página Projetos ("Outras obras"), o visitante vê três projetos numerados — AdoPet,
-Lapidare Beauty e Oppe Clothing — cada um com o print do site, nome e uma frase; o print
+Salon Beauty (antigo Lapidare Beauty) e Oppe Clothing — cada um com o print do site, nome e uma frase; o print
 leva ao site no ar. *(Revisão 2026-11-23: Times de Society removido a pedido do dono.)*
 
 **Why this priority**: mostra amplitude, mas depende de prints e links que ainda serão

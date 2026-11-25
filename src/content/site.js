@@ -84,11 +84,11 @@ export const projetos = [
   },
   {
     number: '02',
-    name: 'Lapidare Beauty',
+    name: 'Salon Beauty',
     description: 'Agendamento online para o salão.',
     image: {
-      src: '/projetos/lapidare.webp',
-      alt: 'Página inicial do Lapidare Beauty no celular, com o botão Agendar horário',
+      src: '/projetos/salon.webp',
+      alt: 'Página inicial do Salon Beauty no celular: Lapidamos sua beleza com naturalidade, com o botão Agendar horário',
       placeholder: '[Print]',
       position: 'top',
     },

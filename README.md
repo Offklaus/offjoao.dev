@@ -37,7 +37,7 @@ mexer nos componentes.
 - [x] Repositório do OEE-Fabric (`destaque.repo`) — **o repositório está privado no GitHub:
   visitantes veem 404 até ele ficar público**
 - [x] Print, problema, solução, tecnologias e artigo do OEE-Fabric (`destaque`)
-- [x] Prints e links do Lapidare Beauty e da Oppe Clothing (`public/projetos/*.webp`)
+- [x] Prints e links do Salon Beauty (antigo Lapidare) e da Oppe Clothing (`public/projetos/*.webp`)
 - [x] AdoPet: link e print (`public/projetos/adopet.webp`)
 - [x] GitHub e LinkedIn (`contatos`)
 - [x] PDF do currículo (`public/curriculo-joao-victor-pereira-ribeiro.pdf`)
