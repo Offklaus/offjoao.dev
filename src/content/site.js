@@ -27,10 +27,11 @@ export const capa = {
   title: 'João Victor', // em duas linhas na capa (uma por palavra)
   intro: 'Sistemas web para problemas reais, do chão de fábrica à agenda de um salão.',
   photo: {
-    src: '/foto-joao.webp',
+    src: '/foto-joao-recorte.webp',
     alt: 'Foto de João Victor sorrindo, de óculos e camisa preta',
     placeholder: '[Sua foto]',
-    ratio: '3 / 4', // foto inteira: a moldura segue a proporção da imagem (900 × 1200)
+    ratio: '900 / 1027', // foto inteira, na proporção da imagem
+    cutout: true, // sem fundo (WebP transparente): sem caixa, direto na página
   },
 }
 

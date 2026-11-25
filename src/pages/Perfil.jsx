@@ -17,7 +17,7 @@ export default function Perfil() {
       </h1>
 
       <div className="spread perfil-spread">
-        <Photo image={perfil.photo} tilt={-1.2} tape={{ left: '28px', rotate: -9 }} />
+        <Photo image={perfil.photo} />
 
         <div className="perfil-text">
           <p className="lead-serif">{perfil.lead}</p>

@@ -13,12 +13,12 @@ describe('US1 · Capa', () => {
     expect(screen.queryByText(/que saíram do papel/)).not.toBeInTheDocument()
   })
 
-  it('mostra a foto do João com texto alternativo', () => {
+  it('mostra a foto do João sem fundo, com texto alternativo', () => {
     renderAt('/')
 
     expect(screen.getByRole('img', { name: /Foto de João Victor/ })).toHaveAttribute(
       'src',
-      '/foto-joao.webp',
+      '/foto-joao-recorte.webp',
     )
     expect(screen.queryByText('[Sua foto]')).not.toBeInTheDocument()
   })

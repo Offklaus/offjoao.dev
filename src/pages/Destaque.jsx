@@ -60,7 +60,7 @@ export default function Destaque() {
         </div>
 
         <div className="destaque-media">
-          <Photo image={destaque.image} tape={{ left: '60px', rotate: -6 }} />
+          <Photo image={destaque.image} />
           <dl className="ficha">
             <div className="ficha-row">
               <dt className="kicker">Tipo</dt>

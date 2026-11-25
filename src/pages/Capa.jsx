@@ -19,7 +19,7 @@ export default function Capa() {
         <p className="lede">{capa.intro}</p>
       </div>
 
-      <Photo image={capa.photo} tilt={1} tape={{ left: 'calc(50% - 55px)', rotate: -4 }} />
+      <Photo image={capa.photo} />
     </div>
   )
 }

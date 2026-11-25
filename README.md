@@ -1,7 +1,7 @@
 # offjoão.dev — Portfólio "Revista 2002"
 
 Portfólio pessoal em formato de revista de cinco páginas (Capa, Perfil, Matéria de capa,
-Projetos e Contato), com letras recortadas de papel, fotos com borda rasgada e navegação
+Projetos e Contato), com letras recortadas de papel, fotos com contorno fino, a foto da capa sem fundo e navegação
 de "folhear". Feito com **Vite + React** a partir do design "Portfólio — Revista 2002".
 
 ## Rodar

@@ -1,6 +1,6 @@
 <!--
 Sync Impact Report
-- Version change: 1.0.0 → 1.1.0 (MINOR: novo princípio)
+- Version change: 1.1.0 → 1.1.1 (PATCH: fotos sem borda rasgada nem fita, Princípio I)
 - Modified principles: nenhum renomeado
 - Added principles: VI. Uma Página, Uma Tela
 - Added sections: nenhuma
@@ -18,7 +18,8 @@ Sync Impact Report
 - O canvas de design "Portfólio — Revista 2002" é a fonte da verdade visual: paleta
   (preto #000, página #0A0B0B, tinta #F2EFE8, papel #DDD7CA/#CFC8B8), tipografia
   (Anton, Instrument Serif itálico, Bricolage Grotesque 800, Space Mono) e os
-  componentes de recorte de papel (letras recortadas, fotos com borda rasgada, fita).
+  componentes de recorte de papel (letras recortadas); fotos e prints com contorno fino,
+  sem borda rasgada nem fita (revisão de 2026-11-25, a pedido do autor).
 - As cinco páginas do canvas (Capa, Perfil, Destaque, Projetos, Contato) e a navegação
   de "folhear" (Anterior / folio NN/05 / Próxima) DEVEM existir no site.
 - Cores, fontes e medidas vivem em tokens CSS únicos; nenhum componente usa hex solto.
@@ -121,4 +122,4 @@ página impressa, e rolar quebra essa leitura.
 - Toda violação justificada vai na tabela "Complexity Tracking" do plano da feature.
 - Revisão de conformidade: ao final de cada feature, conferir os seis princípios.
 
-**Version**: 1.1.0 | **Ratified**: 2026-11-18 | **Last Amended**: 2026-11-18
+**Version**: 1.1.1 | **Ratified**: 2026-11-18 | **Last Amended**: 2026-11-25

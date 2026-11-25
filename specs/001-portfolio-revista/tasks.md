@@ -265,3 +265,9 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 
 - [X] T076 Perfil: tirar o parágrafo da Black Belt; stack = JavaScript · Node.js · React · PostgreSQL · FullStack (sem HTML & CSS) em `src/content/site.js` e `src/pages/Perfil.test.jsx`
 - [X] T077 Separador "·" preso ao item da esquerda (`.stack-list li:not(:last-child)::after`) para a linha quebrada não começar com ponto; conferir `/perfil` sem rolagem nas 8 telas
+
+## Phase 16: Revisão — fotos sem borda rasgada e capa sem fundo
+
+- [X] T078 Fotos e prints sem `clip-path` rasgado, moldura creme nem fita: contorno de 1px `--c-rule` (`src/styles/paper.css`, `src/components/Photo.jsx`); Perfil sem inclinação
+- [X] T079 Capa com a foto sem fundo (`public/foto-joao-recorte.webp`, rembg local + limpeza do halo do cabelo), `image.cutout` sem caixa e com a base/ombros esfumados por máscara
+- [X] T080 Conferir as 6 rotas sem rolagem nas 8 telas; `npm run lint`, `npm test`, `npm run build`

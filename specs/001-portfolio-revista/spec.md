@@ -199,7 +199,7 @@ número, nome e descrição; cartões com link levam ao projeto.
 - **FR-011**: Informação ainda não fornecida MUST aparecer como placeholder explícito entre
   colchetes.
 - **FR-012**: O site MUST seguir a identidade visual do canvas "Revista 2002": letras
-  recortadas de papel, fotos com borda rasgada e fita, paleta preto/creme e as quatro
+  recortadas de papel, fotos com contorno fino (sem borda rasgada desde a revisão de 25/11), paleta preto/creme e as quatro
   famílias tipográficas.
 - **FR-013**: Todo conteúdo e controle MUST ser utilizável por teclado e leitor de tela,
   com foco visível e contraste adequado.
