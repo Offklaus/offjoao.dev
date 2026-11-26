@@ -1,6 +1,7 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
 import SmartLink from '../components/SmartLink'
+import StackList from '../components/StackList'
 import Type from '../components/Type'
 import { projetos } from '../content/site'
 
@@ -32,6 +33,11 @@ export default function Projetos() {
               <span className="card-desc">
                 <Type text={projeto.description} />
               </span>
+              <StackList
+                items={projeto.stack}
+                className="stack-list--small"
+                aria-label={`Stack do ${projeto.name}`}
+              />
             </SmartLink>
           </li>
         ))}

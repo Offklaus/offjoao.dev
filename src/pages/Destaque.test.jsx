@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderAt } from '../test/renderAt'
 
 describe('US4 · Matéria de capa', () => {
@@ -35,7 +35,11 @@ describe('US4 · Matéria de capa', () => {
     renderAt('/destaque')
 
     expect(screen.getByText('TCC · artigo')).toBeInTheDocument()
-    expect(screen.getByText('Node.js · Express · PostgreSQL')).toBeInTheDocument()
+    const stack = within(screen.getByRole('list', { name: 'Stack do OEE-Fabric' })).getAllByRole('listitem')
+    expect(stack.map((li) => li.textContent)).toEqual(['JavaScript', 'Node.js', 'Express', 'PostgreSQL'])
+    for (const item of stack) {
+      expect(item.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
+    }
     const repo = screen.getByRole('link', { name: /Ver repositório/ })
     expect(repo).toHaveAttribute('href', 'https://github.com/Offklaus/OEE-Fabric')
     expect(repo).toHaveAttribute('target', '_blank')

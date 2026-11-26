@@ -65,7 +65,8 @@ export const destaque = {
   solucao:
     'Sistema web em que o operador registra cada evento na hora e o OEE sai em segundos, por ordem de produção, máquina e setor.',
   tipo: 'TCC · artigo',
-  stack: 'Node.js · Express · PostgreSQL',
+  // Do repositório: front em JavaScript puro (esbuild) e API em Express sobre PostgreSQL
+  stack: ['JavaScript', 'Node.js', 'Express', 'PostgreSQL'],
   artigo: { label: 'Ver artigo', href: '/artigo-tcc-oee-fabric.pdf' },
   repo: { label: 'Ver repositório', href: 'https://github.com/Offklaus/OEE-Fabric' },
 }
@@ -82,6 +83,7 @@ export const projetos = [
       position: 'top',
     },
     url: 'https://adopet-pjcw.onrender.com/',
+    stack: ['React', 'Vite', 'Node.js', 'PostgreSQL'],
   },
   {
     number: '02',
@@ -94,6 +96,7 @@ export const projetos = [
       position: 'top',
     },
     url: 'https://lapidare.onrender.com/',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
   },
   {
     number: '03',
@@ -106,6 +109,7 @@ export const projetos = [
       position: 'top',
     },
     url: 'https://www.oppeclothing.com/',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
   },
 ]
 

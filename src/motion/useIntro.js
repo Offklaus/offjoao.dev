@@ -39,10 +39,11 @@ export function useIntro(rootRef, enabled) {
       const plan = typeSchedule(blocks.map((block) => block.children.length))
 
       blocks.forEach((block, i) => {
-        const stamp = block.parentElement?.querySelector(':scope > [data-stamp]')
+        const host = block.closest(':has(> [data-stamp])')
+        const stamp = host?.querySelector(':scope > [data-stamp]')
         if (stamp) {
           running.push(
-            animate(block.parentElement, { opacity: [0, 1] }, { duration: type.strike, delay: plan[i].start, ease: 'linear' }),
+            animate(host, { opacity: [0, 1] }, { duration: type.strike, delay: plan[i].start, ease: 'linear' }),
             animate(stamp, { opacity: [0, 1] }, { duration: type.strike, delay: plan[i].start, ease: 'linear' }),
             animate(
               stamp,

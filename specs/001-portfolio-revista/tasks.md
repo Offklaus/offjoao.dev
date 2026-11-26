@@ -286,3 +286,10 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 - [X] T087 `<TechIcon>` e a stack em etiquetas (ícone + nome, contorno fino), sem os "·"; no celular, etiquetas mais justas para caber em duas linhas e manter a foto
 - [X] T088 Entrada: o ícone é carimbado (escala 1,6 → 1, mola curta) e a etiqueta surge quando o nome começa a ser batido (`INTRO.stamp`); teste do teto de 2 s
 - [X] T089 Conferir Perfil sem rolagem nas 8 telas, entrada ≤ 2 s, `npm run lint`, `npm test`, `npm run build`
+
+## Phase 19: Stack dos projetos e carrossel do Perfil (FR-005, FR-006, FR-007)
+
+- [X] T090 Stack de cada projeto tirada dos repositórios (package.json): AdoPet (React, Vite, Node.js, PostgreSQL), Salon e Oppe (+ Express), OEE-Fabric (JavaScript, Node.js, Express, PostgreSQL); ícones de Express e Vite (Simple Icons, CC0)
+- [X] T091 `<StackList>` reutilizável; etiquetas pequenas nos cartões de Projetos e na ficha do Destaque; no celular, só ícones e, nos cartões, selos por cima do print
+- [X] T092 `<StackMarquee>`: duas cópias em fila (a primeira só visual, letra a letra para ter a mesma largura), CSS `translateX(-50%) → 0` em 26 s, começa depois da entrada (2 s), pausa no hover e no botão (`aria-pressed`), parada com menos movimento
+- [X] T093 Testes de Projetos/Destaque/Perfil (stacks e botão de pausa); 48 combinações sem rolagem; entrada ≤ 2 s; carrossel conferido (direção, velocidade, laço sem emenda)

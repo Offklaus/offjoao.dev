@@ -1,6 +1,7 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
 import SmartLink from '../components/SmartLink'
+import StackList from '../components/StackList'
 import Type from '../components/Type'
 import { withBase } from '../content/base'
 import { destaque } from '../content/site'
@@ -88,7 +89,11 @@ export default function Destaque() {
                 <Type text="Stack" />
               </dt>
               <dd>
-                <Type text={destaque.stack} />
+                <StackList
+                  items={destaque.stack}
+                  className="stack-list--small"
+                  aria-label="Stack do OEE-Fabric"
+                />
               </dd>
             </div>
           </dl>

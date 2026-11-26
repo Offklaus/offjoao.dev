@@ -187,11 +187,16 @@ número, nome e descrição; cartões com link levam ao projeto.
 - **FR-005**: A página Perfil MUST exibir foto, apresentação e a
   stack em etiquetas, cada tecnologia com o seu ícone na cor da marca (Simple Icons,
   CC0) e um ícone próprio para FullStack. *(Revisão 2026-11-25: "foco a mais nas minhas
-  stack [...] colocando os ícones de cada stack".)*
+  stack [...] colocando os ícones de cada stack".)* A stack passa em carrossel contínuo da
+  esquerda para a direita, com pausa (mouse em cima ou botão) e parada com
+  `prefers-reduced-motion`. *(Revisão 2026-11-26.)*
 - **FR-006**: A página Destaque MUST exibir rótulo, título, subtítulo, imagem, resumo e
-  ficha técnica (tipo, stack, link do repositório) do OEE-Fabric.
+  ficha técnica (tipo, stack, link do repositório) do OEE-Fabric; a stack em etiquetas
+  com o ícone de cada tecnologia (só os ícones no celular).
 - **FR-007**: A página Projetos MUST exibir os projetos (hoje três) em cartões numerados com
-  imagem, nome e descrição; o cartão só é link quando o projeto tem endereço.
+  imagem, nome, descrição e a stack usada (etiquetas com ícone; no celular, selos só com o
+  ícone por cima do print); o cartão só é link quando o projeto tem endereço.
+  *(Revisão 2026-11-26: "deixe evidenciado qual stack foi usada nos projetos".)*
 - **FR-008**: A página Contato MUST exibir e-mail, GitHub, LinkedIn e currículo, cada um
   levando ao destino correspondente; destinos externos abrem em nova aba.
 - **FR-009**: Endereços inexistentes MUST mostrar uma página "não encontrada" com link

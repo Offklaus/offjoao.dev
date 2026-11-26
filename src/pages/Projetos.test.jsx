@@ -6,7 +6,7 @@ describe('US6 · Outros projetos', () => {
     renderAt('/projetos')
 
     expect(screen.getByRole('heading', { level: 1, name: 'Outras obras' })).toBeInTheDocument()
-    const cartoes = within(screen.getByRole('list', { name: 'Projetos' })).getAllByRole('listitem')
+    const cartoes = screen.getByRole('list', { name: 'Projetos' }).querySelectorAll(':scope > li')
     expect(cartoes).toHaveLength(3)
 
     const titulos = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)
@@ -30,6 +30,23 @@ describe('US6 · Outros projetos', () => {
       expect(link).toHaveAttribute('target', '_blank')
       expect(link).toHaveAttribute('rel', 'noopener noreferrer')
       expect(within(link).getByRole('img')).toHaveAttribute('src', print)
+    }
+  })
+
+  it('cada projeto mostra a stack usada, com o ícone de cada tecnologia', () => {
+    renderAt('/projetos')
+
+    const stacks = {
+      AdoPet: ['React', 'Vite', 'Node.js', 'PostgreSQL'],
+      'Salon Beauty': ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
+      'Oppe Clothing': ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
+    }
+    for (const [nome, tecnologias] of Object.entries(stacks)) {
+      const itens = within(screen.getByRole('list', { name: `Stack do ${nome}` })).getAllByRole('listitem')
+      expect(itens.map((li) => li.textContent)).toEqual(tecnologias)
+      for (const item of itens) {
+        expect(item.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
+      }
     }
   })
 })

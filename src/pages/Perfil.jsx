@@ -1,6 +1,6 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
-import TechIcon from '../components/TechIcon'
+import StackMarquee from '../components/StackMarquee'
 import Type from '../components/Type'
 import { perfil } from '../content/site'
 
@@ -31,17 +31,7 @@ export default function Perfil() {
             </p>
           ))}
           <div className="stack-block">
-            <h2 className="kicker" id="stack-titulo">
-              <Type text="Stack" />
-            </h2>
-            <ul className="stack-list" aria-labelledby="stack-titulo">
-              {perfil.stack.map((tech) => (
-                <li key={tech}>
-                  <TechIcon name={tech} />
-                  <Type text={tech} />
-                </li>
-              ))}
-            </ul>
+            <StackMarquee items={perfil.stack} title="Stack" />
           </div>
         </div>
       </div>

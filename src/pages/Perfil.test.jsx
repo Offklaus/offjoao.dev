@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { fireEvent, screen, within } from '@testing-library/react'
 import { renderAt } from '../test/renderAt'
 
 describe('US5 · Perfil', () => {
@@ -30,5 +30,18 @@ describe('US5 · Perfil', () => {
     for (const item of itens) {
       expect(item.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
     }
+  })
+
+  it('o carrossel da stack pode ser pausado e retomado', () => {
+    renderAt('/perfil')
+
+    const botao = screen.getByRole('button', { name: 'Pausar o carrossel da stack' })
+    expect(botao).toHaveAttribute('aria-pressed', 'false')
+    fireEvent.click(botao)
+    expect(botao).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(botao)
+    expect(botao).toHaveAttribute('aria-pressed', 'false')
+    // a cópia que fecha o laço do carrossel fica fora da árvore de acessibilidade
+    expect(screen.getAllByRole('list', { name: 'Stack' })).toHaveLength(1)
   })
 })
