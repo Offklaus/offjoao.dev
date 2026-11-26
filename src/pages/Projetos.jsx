@@ -30,6 +30,14 @@ export default function Projetos() {
                   <Type text={projeto.name} />
                 </span>
               </h2>
+              {/* etiqueta de papel no canto do print, carimbada na entrada da página */}
+              {projeto.status && (
+                <span className="selo">
+                  <span className="selo-paper" data-stamp="">
+                    <Type text={projeto.status} />
+                  </span>
+                </span>
+              )}
               <span className="card-desc">
                 <Type text={projeto.description} />
               </span>

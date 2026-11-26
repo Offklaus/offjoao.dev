@@ -14,22 +14,32 @@ describe('US6 · Outros projetos', () => {
     expect(screen.queryByText(/Times de Society/)).not.toBeInTheDocument()
   })
 
-  it('cada projeto mostra o print e abre o site em nova aba', () => {
+  it('só a Oppe Clothing abre o site em nova aba; AdoPet e Salon Beauty ficam sem link', () => {
     renderAt('/projetos')
 
     const lista = screen.getByRole('list', { name: 'Projetos' })
-    const sites = [
-      ['AdoPet', 'https://adopet-pjcw.onrender.com/', '/projetos/adopet.webp'],
-      ['Salon Beauty', 'https://lapidare.onrender.com/', '/projetos/salon.webp'],
-      ['Oppe Clothing', 'https://www.oppeclothing.com/', '/projetos/oppe.webp'],
-    ]
-    expect(within(lista).getAllByRole('link')).toHaveLength(sites.length)
-    for (const [nome, url, print] of sites) {
-      const link = within(lista).getByRole('link', { name: new RegExp(nome) })
-      expect(link).toHaveAttribute('href', url)
-      expect(link).toHaveAttribute('target', '_blank')
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer')
-      expect(within(link).getByRole('img')).toHaveAttribute('src', print)
+    const link = within(lista).getByRole('link')
+    expect(link).toHaveAccessibleName(/Oppe Clothing/)
+    expect(link).toHaveAttribute('href', 'https://www.oppeclothing.com/')
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+
+    const prints = {
+      AdoPet: '/projetos/adopet.webp',
+      'Salon Beauty': '/projetos/salon.webp',
+      'Oppe Clothing': '/projetos/oppe.webp',
+    }
+    for (const [nome, print] of Object.entries(prints)) {
+      const cartao = screen.getByRole('heading', { level: 2, name: new RegExp(nome) }).closest('li')
+      expect(within(cartao).getByRole('img')).toHaveAttribute('src', print)
+    }
+  })
+
+  it('todos os cartões têm a etiqueta "Em produção"', () => {
+    renderAt('/projetos')
+
+    for (const cartao of screen.getByRole('list', { name: 'Projetos' }).querySelectorAll(':scope > li')) {
+      expect(within(cartao).getByText('Em produção')).toBeInTheDocument()
     }
   })
 

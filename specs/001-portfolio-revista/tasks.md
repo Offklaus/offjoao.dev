@@ -299,3 +299,9 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 - [X] T094 Colagem por passada contínua: `glueSchedule(widths)`/`glueAt`/`glueStep` em `src/motion/intro.js` (tempo proporcional à largura, avanço por quadro com teto, prazo de 1,9 s); `--glue` → `clip-path` + dobra (`::after`) em `src/styles/intro.css`; papel assentado perde o recorte
 - [X] T095 Digitação revelada por um laço só de rAF (em vez de uma animação por letra): Destaque de 9–30 para ~90 quadros nos 2 s da entrada
 - [X] T096 Testes da régua (passada emendada, mesma velocidade, sem saltos, prazo); quadros gravados e medidos (avanço máximo de 4,2% por quadro, passada de ~0,78 s); entrada 1,35–1,95 s em todas as páginas, sem rolagem
+
+## Phase 21: Projetos em produção (US6, FR-007)
+
+- [X] T097 AdoPet e Salon Beauty sem link (`url: null`); `status: 'Em produção'` nos três projetos em `src/content/site.js`
+- [X] T098 Etiqueta `.selo` no canto de cima do print (papel claro, inclinada, menor no celular), carimbada na entrada (`data-stamp` + `<Type>`) em `src/pages/Projetos.jsx` e `src/styles/pages.css`; testes em `src/pages/Projetos.test.jsx`
+- [X] T099 Conferir `/projetos` nas 8 telas (sem rolagem, etiqueta dentro da tela, 1 link), com menos movimento, e entrada ≤ 2 s

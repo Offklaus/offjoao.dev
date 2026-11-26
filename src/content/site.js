@@ -71,6 +71,7 @@ export const destaque = {
   repo: { label: 'Ver repositório', href: 'https://github.com/Offklaus/OEE-Fabric' },
 }
 
+// status: etiqueta de papel no canto do print (ex.: 'Em produção'); sem status, sem etiqueta
 export const projetos = [
   {
     number: '01',
@@ -82,8 +83,9 @@ export const projetos = [
       placeholder: '[Print]',
       position: 'top',
     },
-    url: 'https://adopet-pjcw.onrender.com/',
+    url: null, // sem link por enquanto (em produção)
     stack: ['React', 'Vite', 'Node.js', 'PostgreSQL'],
+    status: 'Em produção',
   },
   {
     number: '02',
@@ -95,8 +97,9 @@ export const projetos = [
       placeholder: '[Print]',
       position: 'top',
     },
-    url: 'https://lapidare.onrender.com/',
+    url: null, // sem link por enquanto (em produção)
     stack: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
+    status: 'Em produção',
   },
   {
     number: '03',
@@ -110,6 +113,7 @@ export const projetos = [
     },
     url: 'https://www.oppeclothing.com/',
     stack: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL'],
+    status: 'Em produção',
   },
 ]
 

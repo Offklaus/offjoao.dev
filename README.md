@@ -39,6 +39,8 @@ mexer nos componentes.
 - [x] Print, problema, solução, tecnologias e artigo do OEE-Fabric (`destaque`)
 - [x] Prints e links do Salon Beauty (antigo Lapidare) e da Oppe Clothing (`public/projetos/*.webp`)
 - [x] AdoPet: link e print (`public/projetos/adopet.webp`)
+- AdoPet e Salon Beauty estão sem link por enquanto (`url: null`); os três projetos têm a
+  etiqueta "Em produção" (`status` em `projetos`)
 - [x] GitHub e LinkedIn (`contatos`)
 - [x] PDF do currículo (`public/curriculo-joao-victor-pereira-ribeiro.pdf`)
 - [x] E-mail (`contatos`)

@@ -50,6 +50,8 @@ com o rótulo "Voltar à capa ↺"; a primeira não tem `prev`.
 | `description` | string | 1 frase |
 | `image` | Image | placeholder "[Print]" quando sem imagem |
 | `url` | string \| null | `https://…`; `null` = cartão sem link |
+| `stack` | string[] | tecnologias, cada uma com ícone (`src/content/stackIcons.js`) |
+| `status` | string? | etiqueta no canto do print (ex.: `'Em produção'`); ausente = sem etiqueta (só em `projetos`) |
 
 `destaque` acrescenta: `kicker`, `titulo: string[3]`, `subtitulo`, `resumo`, `tipo`,
 `stack`, `repo: { label: string, href: string | null }` (o rótulo fica entre colchetes

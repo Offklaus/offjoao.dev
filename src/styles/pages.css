@@ -464,6 +464,42 @@
   align-self: start;
 }
 
+/* Etiqueta "Em produção": papel claro preso no canto de cima do print, um pouco para
+   fora e inclinado. Divide a 1ª linha com o print, que por isso também tem lugar fixo
+   (título, descrição e stack seguem nas linhas de baixo). A inclinação fica no
+   envoltório porque a entrada anima a escala do papel (carimbo). */
+.card > .photo-wrap,
+.card > .selo {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.card > .selo {
+  z-index: 1;
+  align-self: start;
+  justify-self: end;
+  margin: -6px -6px 0 0;
+  rotate: 4deg;
+  filter: drop-shadow(2px 3px 0 rgb(0 0 0 / 0.6));
+}
+
+.selo-paper {
+  display: block;
+  padding: 0.5em 0.75em 0.45em;
+  font-family: var(--f-mono);
+  font-size: clamp(10px, 1.5svh, 12px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-dark);
+  background:
+    linear-gradient(var(--c-paper-white), var(--c-paper-white)) padding-box,
+    var(--c-paper-white-edge) border-box;
+  border: 2px solid transparent;
+}
+
 /* Celular: a stack de cada cartão vira selos por cima do print (canto de baixo) e o
    cartão volta a 3 linhas, para o print não perder altura. Fica depois das regras-base
    dos cartões para vencer na cascata. */
@@ -499,6 +535,18 @@
     margin: 6px;
     padding: 4px;
     background: var(--c-page);
+  }
+
+  /* etiqueta menor e mais justa: no cartão estreito ela não cobre o topo do print */
+  .card > .selo {
+    margin: -4px -4px 0 0;
+  }
+
+  .selo-paper {
+    padding: 0.45em 0.5em 0.4em;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    border-width: 1px;
   }
 }
 

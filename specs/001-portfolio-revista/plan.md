@@ -129,7 +129,7 @@ specs/001-portfolio-revista/
 index.html                 # fontes, meta, lang="pt-BR"
 vite.config.js             # plugin React + config do Vitest
 public/
-└── favicon.ico, favicon-192.png, apple-touch-icon.png (mascote)
+└── favicon-j.ico, favicon-j-192.png, apple-touch-icon-j.png (J branco num círculo preto)
 src/
 ├── main.jsx               # BrowserRouter + estilos globais
 ├── App.jsx                # tabela de rotas

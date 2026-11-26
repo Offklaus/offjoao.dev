@@ -140,6 +140,9 @@ lista de tecnologias.
 Na página Projetos ("Outras obras"), o visitante vê três projetos numerados — AdoPet,
 Salon Beauty (antigo Lapidare Beauty) e Oppe Clothing — cada um com o print do site, nome e uma frase; o print
 leva ao site no ar. *(Revisão 2026-11-23: Times de Society removido a pedido do dono.)*
+*(Revisão 2026-11-26: "Retira os links dos projetos do adopet e salon [...] de todos no card
+coloca 'Em produção'". AdoPet e Salon Beauty ficam sem link; só a Oppe Clothing leva ao
+site. Os três cartões levam a etiqueta "Em produção" no canto do print.)*
 
 **Why this priority**: mostra amplitude, mas depende de prints e links que ainda serão
 fornecidos.
@@ -154,6 +157,8 @@ número, nome e descrição; cartões com link levam ao projeto.
    o projeto abre em nova aba.
 3. **Given** um projeto ainda sem link, **When** o visitante passa por ele, **Then** o
    cartão não se apresenta como link (não leva a lugar nenhum vazio).
+4. **Given** um projeto com status cadastrado (hoje "Em produção" nos três), **When** a
+   página carrega, **Then** o cartão mostra a etiqueta com o status no canto do print.
 
 ---
 
@@ -198,7 +203,10 @@ número, nome e descrição; cartões com link levam ao projeto.
 - **FR-007**: A página Projetos MUST exibir os projetos (hoje três) em cartões numerados com
   imagem, nome, descrição e a stack usada (etiquetas com ícone; no celular, selos só com o
   ícone por cima do print); o cartão só é link quando o projeto tem endereço.
-  *(Revisão 2026-11-26: "deixe evidenciado qual stack foi usada nos projetos".)*
+  *(Revisão 2026-11-26: "deixe evidenciado qual stack foi usada nos projetos".)* Projeto
+  com `status` mostra uma etiqueta de papel no canto de cima do print (menor no celular),
+  carimbada na entrada da página; hoje os três estão "Em produção" e só a Oppe Clothing
+  tem link.
 - **FR-008**: A página Contato MUST exibir e-mail, GitHub, LinkedIn e currículo, cada um
   levando ao destino correspondente; destinos externos abrem em nova aba.
 - **FR-009**: Endereços inexistentes MUST mostrar uma página "não encontrada" com link
