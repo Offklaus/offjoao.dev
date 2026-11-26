@@ -263,7 +263,7 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 
 ## Phase 15: Revisão — Perfil (US5, FR-005)
 
-- [X] T076 Perfil: tirar o parágrafo da Black Belt; stack = JavaScript · Node.js · React · PostgreSQL · FullStack (sem HTML & CSS) em `src/content/site.js` e `src/pages/Perfil.test.jsx`
+- [X] T076 Perfil: tirar o parágrafo da Black Belt; stack = JavaScript · Node.js · Express · React · PostgreSQL · FullStack (sem HTML & CSS; Express acrescentado em 2026-11-26) em `src/content/site.js` e `src/pages/Perfil.test.jsx`
 - [X] T077 Separador "·" preso ao item da esquerda (`.stack-list li:not(:last-child)::after`) para a linha quebrada não começar com ponto; conferir `/perfil` sem rolagem nas 8 telas
 
 ## Phase 16: Revisão — fotos sem borda rasgada e capa sem fundo
@@ -291,5 +291,11 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 
 - [X] T090 Stack de cada projeto tirada dos repositórios (package.json): AdoPet (React, Vite, Node.js, PostgreSQL), Salon e Oppe (+ Express), OEE-Fabric (JavaScript, Node.js, Express, PostgreSQL); ícones de Express e Vite (Simple Icons, CC0)
 - [X] T091 `<StackList>` reutilizável; etiquetas pequenas nos cartões de Projetos e na ficha do Destaque; no celular, só ícones e, nos cartões, selos por cima do print
-- [X] T092 `<StackMarquee>`: duas cópias em fila (a primeira só visual, letra a letra para ter a mesma largura), CSS `translateX(-50%) → 0` em 26 s, começa depois da entrada (2 s), pausa no hover e no botão (`aria-pressed`), parada com menos movimento
-- [X] T093 Testes de Projetos/Destaque/Perfil (stacks e botão de pausa); 48 combinações sem rolagem; entrada ≤ 2 s; carrossel conferido (direção, velocidade, laço sem emenda)
+- [X] T092 `<StackMarquee>`: duas cópias em fila (a primeira só visual, letra a letra para ter a mesma largura), CSS `translateX(-50%) → 0` em 26 s, começa depois da entrada (2 s), pausa no hover (o botão de pausa foi retirado a pedido), parada com menos movimento
+- [X] T093 Testes de Projetos/Destaque/Perfil (stacks; carrossel sem botão e lido uma vez só); 48 combinações sem rolagem; entrada ≤ 2 s; carrossel conferido (direção, velocidade, laço sem emenda)
+
+## Phase 20: Colagem de ponta a ponta, uniforme (FR-019)
+
+- [X] T094 Colagem por passada contínua: `glueSchedule(widths)`/`glueAt`/`glueStep` em `src/motion/intro.js` (tempo proporcional à largura, avanço por quadro com teto, prazo de 1,9 s); `--glue` → `clip-path` + dobra (`::after`) em `src/styles/intro.css`; papel assentado perde o recorte
+- [X] T095 Digitação revelada por um laço só de rAF (em vez de uma animação por letra): Destaque de 9–30 para ~90 quadros nos 2 s da entrada
+- [X] T096 Testes da régua (passada emendada, mesma velocidade, sem saltos, prazo); quadros gravados e medidos (avanço máximo de 4,2% por quadro, passada de ~0,78 s); entrada 1,35–1,95 s em todas as páginas, sem rolagem

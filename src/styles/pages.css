@@ -100,11 +100,12 @@
 }
 
 /* O nome em duas linhas (JOÃO / VICTOR): o tamanho segue a largura da coluna (cqi)
-   e a altura da tela (svh), o que for menor — nunca passa da coluna nem faz rolar */
+   e a altura da tela (svh), o que for menor — nunca passa da coluna nem faz rolar.
+   Contido o bastante para a área e a frase também aparecerem. */
 .capa-title {
   margin: 0;
   font-family: var(--f-display);
-  font-size: clamp(44px, min(34cqi, 26svh), 260px);
+  font-size: clamp(40px, min(26cqi, 20svh), 200px);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.01em;
@@ -116,8 +117,17 @@
   display: block;
 }
 
+/* Área (FullStack · …) e frase maiores que nas outras páginas: dividem o destaque
+   com o nome. A área segue também a largura da coluna (cqi), para caber numa linha. */
+.capa .kicker {
+  font-size: clamp(12px, min(2svh, 3.9cqi), 18px);
+  color: var(--c-ink);
+}
+
 .capa .lede {
-  max-width: 440px;
+  max-width: 22em;
+  font-size: clamp(17px, 2.8svh, 26px);
+  line-height: 1.4;
 }
 
 /* 02 · Perfil */
@@ -191,32 +201,7 @@
 
 /* Stack do Perfil em carrossel: as etiquetas passam da esquerda para a direita, sem
    parar. As duas cópias em fila (cada uma com o espaço do fim) fazem o laço sem emenda;
-   as bordas somem num degradê. Pausa com o mouse em cima ou pelo botão. */
-.stack-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.marquee-toggle {
-  min-height: 24px;
-  padding: 2px 0;
-  font-family: var(--f-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-ink-soft);
-  cursor: pointer;
-  background: none;
-  border: 0;
-}
-
-.marquee-toggle:hover {
-  color: var(--c-ink);
-}
-
+   as bordas somem num degradê. Pausa com o mouse em cima. */
 .marquee {
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
@@ -233,8 +218,7 @@
   padding-inline-end: var(--stack-gap);
 }
 
-.marquee:hover .marquee-track,
-.marquee[data-paused] .marquee-track {
+.marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 
@@ -264,8 +248,7 @@
     padding-inline-end: 0;
   }
 
-  .marquee-track > .stack-list[aria-hidden],
-  .marquee-toggle {
+  .marquee-track > .stack-list[aria-hidden] {
     display: none;
   }
 }

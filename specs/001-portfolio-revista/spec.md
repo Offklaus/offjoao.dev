@@ -20,9 +20,11 @@ já construiu e como falar com ele.
 ### User Story 1 - Ver a capa e entender quem é o dev (Priority: P1)
 
 O visitante abre o endereço principal e vê a capa: o nome "João Victor" em destaque, a
-área (Desenvolvedor web · Engenharia de Software), uma frase de apresentação e a foto
+área (FullStack · Engenharia de Software), uma frase de apresentação e a foto
 inteira. A página ocupa a tela toda, sem moldura. *(Revisão 2026-11-24: título "Portfólio",
-"por João" e a chamada de projetos removidos a pedido do dono.)*
+"por João" e a chamada de projetos removidos a pedido do dono. Revisão 2026-11-26: nome
+menor, área e frase maiores, para o destaque não ficar só no nome; "Desenvolvedor web"
+virou "FullStack".)*
 
 **Why this priority**: é a primeira impressão; sem ela o portfólio não existe. Sozinha já
 funciona como cartão de visita.
@@ -119,7 +121,7 @@ resumo, ficha técnica e link do repositório.
 
 Na página Perfil ("Quem é o dev?"), o visitante lê que o João estuda Engenharia de
 Software na UNINTER, constrói sistemas web para problemas reais e trabalha com JavaScript,
-Node.js, React e PostgreSQL, como desenvolvedor FullStack.
+Node.js, Express, React e PostgreSQL, como desenvolvedor FullStack.
 
 **Why this priority**: dá contexto humano e técnico; complementa a capa.
 
@@ -188,8 +190,8 @@ número, nome e descrição; cartões com link levam ao projeto.
   stack em etiquetas, cada tecnologia com o seu ícone na cor da marca (Simple Icons,
   CC0) e um ícone próprio para FullStack. *(Revisão 2026-11-25: "foco a mais nas minhas
   stack [...] colocando os ícones de cada stack".)* A stack passa em carrossel contínuo da
-  esquerda para a direita, com pausa (mouse em cima ou botão) e parada com
-  `prefers-reduced-motion`. *(Revisão 2026-11-26.)*
+  esquerda para a direita, sem botão de pausa (pausa só com o mouse em cima) e parada com
+  `prefers-reduced-motion`. *(Revisão 2026-11-26: "tire esse botao de pausar".)*
 - **FR-006**: A página Destaque MUST exibir rótulo, título, subtítulo, imagem, resumo e
   ficha técnica (tipo, stack, link do repositório) do OEE-Fabric; a stack em etiquetas
   com o ícone de cada tecnologia (só os ícones no celular).
@@ -226,7 +228,10 @@ número, nome e descrição; cartões com link levam ao projeto.
   escrever, no mesmo ritmo e em cascata. O leitor de tela recebe o texto inteiro, nada
   rola durante ou depois da entrada, e com `prefers-reduced-motion: reduce` tudo aparece
   pronto. *(Revisão 2026-11-25: "crie uma animação que tenha no máximo 2 seg em cada
-  página [...] máquina de escrever [...] colada de ponta a ponta".)*
+  página [...] máquina de escrever [...] colada de ponta a ponta". Revisão 2026-11-26:
+  "parece que esta colando ela por inteira" — a colagem passa a ser uma passada contínua,
+  em velocidade constante, que assenta os papéis da ponta esquerda à direita, um emendado
+  no outro, com uma dobra marcando onde o papel está sendo pressionado.)*
 
 ### Key Entities
 

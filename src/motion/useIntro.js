@@ -1,6 +1,6 @@
-import { animate, stagger } from 'motion/react'
+import { animate } from 'motion/react'
 import { useLayoutEffect } from 'react'
-import { glueSchedule, INTRO, typeSchedule } from './intro'
+import { glueAt, glueStep, INTRO, typeSchedule } from './intro'
 
 /**
  * Roda a entrada da página dentro de `rootRef` (o <main>), antes da primeira pintura:
@@ -13,56 +13,80 @@ export function useIntro(rootRef, enabled) {
 
     const running = []
     try {
-      const { glue, type } = INTRO
       const cuts = Array.from(root.querySelectorAll('.cut'))
-      const glueStarts = glueSchedule(cuts.length)
-
-      cuts.forEach((cut, i) => {
-        const paper = cut.firstElementChild
-        const delay = glueStarts[i]
-        running.push(
-          animate(paper, { opacity: [0, 1] }, { duration: glue.fade, delay, ease: 'linear' }),
-          animate(
-            paper,
-            { rotateY: [glue.lift, 0], transformPerspective: [glue.perspective, glue.perspective] },
-            { type: 'spring', visualDuration: glue.settle, bounce: glue.bounce, delay },
-          ),
-          animate(
-            cut,
-            { filter: [glue.shadowFrom, glue.shadowTo] },
-            { duration: glue.settle, delay, ease: INTRO.ease },
-          ),
-        )
+      // largura de layout (sem a inclinação); medida de novo quando as fontes chegam
+      const measure = () => cuts.map((cut) => cut.offsetWidth)
+      let widths = measure()
+      document.fonts?.ready.then(() => {
+        widths = measure()
       })
+
+      // Uma passada só, de 0 a 1, avançada quadro a quadro em velocidade constante (sem
+      // saltar se o navegador engasgar): a cada quadro vira o --glue de cada papel
+      // (intro.css mostra a parte já assentada e desenha a dobra na frente dela).
+      // Papel assentado perde o recorte (a sombra da direita volta inteira).
+      const settle = (cut) => {
+        cut.style.setProperty('--glue', '1')
+        cut.style.clipPath = 'none'
+      }
+      if (cuts.length) {
+        let progress = 0
+        let first = null
+        let last = null
+        let raf = 0
+        const step = (now) => {
+          first ??= now
+          last ??= now
+          progress = glueStep(progress, (now - last) / 1000, (now - first) / 1000)
+          last = now
+          glueAt(progress, widths).forEach((value, i) => {
+            if (value >= 1) settle(cuts[i])
+            else cuts[i].style.setProperty('--glue', String(value))
+          })
+          if (progress < 1) raf = requestAnimationFrame(step)
+        }
+        raf = requestAnimationFrame(step)
+        running.push({ cancel: () => cancelAnimationFrame(raf) })
+      }
 
       const blocks = Array.from(root.querySelectorAll('[data-type]'))
       const plan = typeSchedule(blocks.map((block) => block.children.length))
 
+      // Máquina de escrever: cada letra (e o item de um ícone) aparece de uma vez no seu
+      // instante. Um laço só revela todas — centenas de animações, uma por letra, faziam
+      // o navegador engasgar e a colagem perder quadros.
+      const strikes = []
       blocks.forEach((block, i) => {
+        const { start, step } = plan[i]
         const host = block.closest(':has(> [data-stamp])')
         const stamp = host?.querySelector(':scope > [data-stamp]')
         if (stamp) {
+          strikes.push({ el: host, at: start }, { el: stamp, at: start })
           running.push(
-            animate(host, { opacity: [0, 1] }, { duration: type.strike, delay: plan[i].start, ease: 'linear' }),
-            animate(stamp, { opacity: [0, 1] }, { duration: type.strike, delay: plan[i].start, ease: 'linear' }),
             animate(
               stamp,
               { scale: [INTRO.stamp.from, 1] },
-              { type: 'spring', visualDuration: INTRO.stamp.settle, bounce: INTRO.stamp.bounce, delay: plan[i].start },
+              { type: 'spring', visualDuration: INTRO.stamp.settle, bounce: INTRO.stamp.bounce, delay: start },
             ),
           )
         }
-
-        const letters = Array.from(block.children)
-        if (!letters.length) return
-        running.push(
-          animate(
-            letters,
-            { opacity: [0, 1] },
-            { duration: type.strike, ease: 'linear', delay: stagger(plan[i].step, { startDelay: plan[i].start }) },
-          ),
-        )
+        Array.from(block.children).forEach((letter, j) => strikes.push({ el: letter, at: start + j * step }))
       })
+      strikes.sort((a, b) => a.at - b.at)
+
+      if (strikes.length) {
+        let next = 0
+        let first = null
+        let raf = 0
+        const strike = (now) => {
+          first ??= now
+          const elapsed = (now - first) / 1000
+          while (next < strikes.length && strikes[next].at <= elapsed) strikes[next++].el.style.opacity = '1'
+          if (next < strikes.length) raf = requestAnimationFrame(strike)
+        }
+        raf = requestAnimationFrame(strike)
+        running.push({ cancel: () => cancelAnimationFrame(raf) })
+      }
     } catch {
       root.removeAttribute('data-intro')
     }

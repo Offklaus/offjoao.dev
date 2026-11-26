@@ -6,7 +6,8 @@ describe('US1 · Capa', () => {
     renderAt('/')
 
     expect(screen.getByRole('heading', { level: 1, name: 'João Victor' })).toBeInTheDocument()
-    expect(screen.getByText('Desenvolvedor web · Engenharia de Software')).toBeInTheDocument()
+    expect(screen.getByText('FullStack · Engenharia de Software')).toBeInTheDocument()
+    expect(screen.queryByText(/Desenvolvedor web/)).not.toBeInTheDocument()
     expect(screen.getByText(/Sistemas web para problemas reais/)).toBeInTheDocument()
     expect(screen.queryByText(/Portfólio/i)).not.toBeInTheDocument()
     expect(screen.queryByText('por João')).not.toBeInTheDocument()

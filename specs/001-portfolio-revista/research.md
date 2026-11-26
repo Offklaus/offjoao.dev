@@ -90,10 +90,18 @@ fixam as escolhas técnicas.
 ## R14 — Entrada de página: colagem e máquina de escrever (2026-11-25, FR-019)
 
 - **Decisão**: `motion` (gratuito) com `animate()` + `stagger()` num `useLayoutEffect` do
-  `Leaf` (`src/motion/useIntro.js`); tempos únicos em `src/motion/intro.js`. Papel: mola em
-  `rotateY` a partir da ponta esquerda (`transform-origin: 0 50%`, perspectiva 600px) +
-  sombra de "levantado" para a sombra normal. Texto: `<Type>` separa as letras em `<span>`
-  (cópia `sr-only` para leitor de tela) e cada letra aparece de uma vez, sem fade nem cursor.
+  `Leaf` (`src/motion/useIntro.js`); tempos únicos em `src/motion/intro.js`. Papel
+  *(revisão 2026-11-26: a mola em `rotateY` parecia colar o papel inteiro de uma vez)*:
+  uma passada só de 0,8 s assenta todos os papéis da página de ponta a ponta, em
+  velocidade constante — cada papel leva o tempo proporcional à sua largura e começa
+  quando o anterior termina (`glueAt`, larguras medidas de novo quando as fontes chegam).
+  `--glue` (0–1) em cada `.cut` controla um `clip-path: inset()` que mostra só a parte
+  assentada e uma dobra sombreada com fio de luz na borda (`::after`); a passada avança
+  quadro a quadro com teto de 1/30 s (`glueStep`: se o navegador engasga, desacelera em
+  vez de saltar) e prazo de 1,9 s. Texto: `<Type>` separa as letras em `<span>` (cópia
+  `sr-only` para leitor de tela) e cada letra aparece de uma vez, sem fade nem cursor,
+  revelada por um laço só de `requestAnimationFrame` — uma animação WAAPI por letra
+  (~350 no Destaque) derrubava a página para 9–30 quadros na entrada; com o laço, ~90.
 - **Por quê**: um ritmo só por página e cascata na ordem do texto cabem no teto de 2 s sem
   digitar letra por letra de forma imperceptível; as letras já ocupam o lugar final, então
   não há layout shift (Princípio VI).

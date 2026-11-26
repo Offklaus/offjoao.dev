@@ -1,4 +1,4 @@
-import { fireEvent, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderAt } from '../test/renderAt'
 
 describe('US5 · Perfil', () => {
@@ -23,6 +23,7 @@ describe('US5 · Perfil', () => {
     expect(itens.map((li) => li.textContent)).toEqual([
       'JavaScript',
       'Node.js',
+      'Express',
       'React',
       'PostgreSQL',
       'FullStack',
@@ -32,15 +33,10 @@ describe('US5 · Perfil', () => {
     }
   })
 
-  it('o carrossel da stack pode ser pausado e retomado', () => {
+  it('o carrossel da stack não tem botão e é lido uma vez só', () => {
     renderAt('/perfil')
 
-    const botao = screen.getByRole('button', { name: 'Pausar o carrossel da stack' })
-    expect(botao).toHaveAttribute('aria-pressed', 'false')
-    fireEvent.click(botao)
-    expect(botao).toHaveAttribute('aria-pressed', 'true')
-    fireEvent.click(botao)
-    expect(botao).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.queryByRole('button', { name: /carrossel/i })).not.toBeInTheDocument()
     // a cópia que fecha o laço do carrossel fica fora da árvore de acessibilidade
     expect(screen.getAllByRole('list', { name: 'Stack' })).toHaveLength(1)
   })

@@ -11,7 +11,7 @@
 export const site = {
   brand: 'offjoão',
   domain: '.dev',
-  role: 'Desenvolvedor web · Engenharia de Software',
+  role: 'FullStack · Engenharia de Software',
 }
 
 /** Ordem das páginas = ordem de folhear. */
@@ -39,7 +39,7 @@ export const perfil = {
   titulo: ['Quem', 'é o dev?'],
   lead: 'Estudante de Engenharia de Software na UNINTER, construindo sistemas web para problemas reais.',
   paragrafos: ['Em busca de estágio em desenvolvimento web.'],
-  stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL', 'FullStack'],
+  stack: ['JavaScript', 'Node.js', 'Express', 'React', 'PostgreSQL', 'FullStack'],
   photo: {
     src: '/foto-joao.webp',
     alt: 'Foto de João Victor sorrindo, de óculos e camisa preta',

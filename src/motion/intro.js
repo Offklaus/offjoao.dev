@@ -1,22 +1,20 @@
 /**
  * Entrada de cada página, no máximo 2 s, com os mesmos tempos e curvas em todas:
- * - glue: os papéis rasgados (.cut) são colados de ponta a ponta, da esquerda para a
- *   direita, um depois do outro;
+ * - glue: os papéis rasgados (.cut) são assentados de ponta a ponta numa passada só, da
+ *   esquerda para a direita e em velocidade constante, um papel emendado no outro;
  * - type: os textos são batidos letra a letra, como numa máquina de escrever, todos no
  *   mesmo ritmo e em cascata na ordem da página.
  */
 export const INTRO = {
   total: 2,
-  ease: [0.22, 1, 0.36, 1],
   glue: {
-    stagger: 0.14,
-    settle: 0.55,
-    bounce: 0.25,
-    fade: 0.12,
-    lift: -75,
-    perspective: 600,
-    shadowFrom: 'drop-shadow(10px 16px 8px rgba(0, 0, 0, 0.35))',
-    shadowTo: 'drop-shadow(3px 4px 0px rgba(0, 0, 0, 0.6))',
+    // duração (s) da passada que assenta todos os papéis da página
+    sweep: 0.8,
+    // maior avanço (s) num quadro: se o navegador engasga, a passada desacelera em vez
+    // de saltar
+    maxStep: 1 / 30,
+    // a passada termina, no pior caso, até este instante (s), dentro do teto
+    deadline: 1.9,
   },
   type: {
     start: 0.25,
@@ -33,11 +31,47 @@ export const INTRO = {
   },
 }
 
-/** Início (s) da colagem de cada papel, para que todos assentem dentro do teto. */
-export function glueSchedule(count, cfg = INTRO) {
-  const { stagger, settle } = cfg.glue
-  const gap = count > 1 ? Math.min(stagger, (cfg.total - settle) / (count - 1)) : 0
-  return Array.from({ length: count }, (_, i) => i * gap)
+/**
+ * Início e duração (s) da colagem de cada papel, dada a largura de cada um. A passada é
+ * uma só e na mesma velocidade: cada papel leva o tempo proporcional à sua largura e
+ * começa quando o anterior termina. Sem medida (larguras zeradas), divide por igual.
+ */
+export function glueSchedule(widths, cfg = INTRO) {
+  const { sweep } = cfg.glue
+  const sized = widths.map((width) => Math.max(0, width) || 0)
+  const total = sized.reduce((sum, width) => sum + width, 0)
+  const share = (width) => (total > 0 ? width / total : 1 / sized.length)
+
+  let start = 0
+  return sized.map((width) => {
+    const duration = sweep * share(width)
+    const slot = { start, duration }
+    start += duration
+    return slot
+  })
+}
+
+/**
+ * Avança a passada (0–1) num quadro: `dt` é o tempo desde o quadro anterior e `elapsed`
+ * desde o primeiro, em segundos. O avanço de um quadro tem teto (sem saltos quando o
+ * navegador engasga), e o prazo garante o fim dentro do teto da entrada.
+ */
+export function glueStep(progress, dt, elapsed, cfg = INTRO) {
+  const { sweep, maxStep, deadline } = cfg.glue
+  const next = progress + Math.min(Math.max(0, dt), maxStep) / sweep
+  return Math.min(1, Math.max(next, elapsed / deadline))
+}
+
+/**
+ * Quanto de cada papel já está assentado (0–1) quando a passada está em `progress`
+ * (0–1). Como reparte pelas larguras do momento, a velocidade é a mesma em todos os
+ * papéis mesmo que as larguras mudem no meio (ex.: a fonte termina de carregar).
+ */
+export function glueAt(progress, widths, cfg = INTRO) {
+  const elapsed = progress * cfg.glue.sweep
+  return glueSchedule(widths, cfg).map(({ start, duration }) =>
+    duration > 0 ? Math.min(1, Math.max(0, (elapsed - start) / duration)) : 1,
+  )
 }
 
 /**
