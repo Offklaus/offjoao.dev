@@ -141,9 +141,11 @@
   margin: 0;
 }
 
+/* Stack em etiquetas: ícone da tecnologia (na cor da marca) + nome */
 .stack-list {
   display: flex;
   flex-wrap: wrap;
+  gap: clamp(6px, 1.2svh, 10px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -152,17 +154,46 @@
   font-weight: 700;
 }
 
-/* O ponto fica preso ao item da esquerda: quando a lista quebra, a linha nova não
-   começa com "·" */
-.stack-list li:not(:last-child)::after {
-  content: ' · ';
-  white-space: pre;
+.stack-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.5em 0.8em;
+  line-height: 1;
+  border: 1px solid var(--c-rule);
 }
 
-/* Celular: a frase também segue a largura, para caber numa linha só */
+.tech-icon {
+  display: inline-flex;
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+}
+
+.tech-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Celular: a frase também segue a largura, para caber numa linha só; as etiquetas da
+   stack ficam mais justas para caber em duas linhas e sobrar altura para a foto */
 @media (max-width: 560px) {
   .perfil-text .body-copy {
     font-size: clamp(14px, min(4vw, 2svh), 18px);
+  }
+
+  .stack-list {
+    gap: 6px;
+  }
+
+  .stack-list li {
+    gap: 0.4em;
+    padding: 0.4em 0.55em;
+  }
+
+  .tech-icon {
+    width: 1.25em;
+    height: 1.25em;
   }
 }
 

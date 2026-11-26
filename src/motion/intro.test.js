@@ -36,4 +36,9 @@ describe('Entrada da página: régua de tempo', () => {
       expect(inicio + INTRO.glue.settle).toBeLessThanOrEqual(INTRO.total + 1e-9)
     })
   })
+
+  it('o carimbo de um ícone, mesmo no último texto, assenta em até 2 s', () => {
+    const ultimo = typeSchedule(Array(30).fill(10)).at(-1)
+    expect(ultimo.start + INTRO.stamp.settle).toBeLessThanOrEqual(INTRO.total + 1e-9)
+  })
 })

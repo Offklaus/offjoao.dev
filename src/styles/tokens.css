@@ -18,6 +18,12 @@
   --c-ink-glow: rgb(242 239 232 / 0.55);
   --c-ink-halo: rgb(242 239 232 / 0.12);
 
+  /* Cores oficiais das marcas da stack (ícones do Perfil, src/content/stackIcons.js) */
+  --c-brand-javascript: #f7df1e;
+  --c-brand-node: #5fa04e;
+  --c-brand-react: #61dafb;
+  --c-brand-postgresql: #4169e1;
+
   /* Fontes */
   --f-display: Anton, Impact, 'Arial Narrow', sans-serif;
   --f-serif: 'Instrument Serif', Georgia, serif;

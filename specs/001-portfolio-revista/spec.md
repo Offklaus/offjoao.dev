@@ -184,8 +184,10 @@ número, nome e descrição; cartões com link levam ao projeto.
   vira "Voltar à capa ↺".
 - **FR-004**: A capa MUST exibir o nome (João Victor), a área, a frase de
   apresentação e foto.
-- **FR-005**: A página Perfil MUST exibir foto, apresentação e
-  stack.
+- **FR-005**: A página Perfil MUST exibir foto, apresentação e a
+  stack em etiquetas, cada tecnologia com o seu ícone na cor da marca (Simple Icons,
+  CC0) e um ícone próprio para FullStack. *(Revisão 2026-11-25: "foco a mais nas minhas
+  stack [...] colocando os ícones de cada stack".)*
 - **FR-006**: A página Destaque MUST exibir rótulo, título, subtítulo, imagem, resumo e
   ficha técnica (tipo, stack, link do repositório) do OEE-Fabric.
 - **FR-007**: A página Projetos MUST exibir os projetos (hoje três) em cartões numerados com

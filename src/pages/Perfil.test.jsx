@@ -15,11 +15,20 @@ describe('US5 · Perfil', () => {
     )
   })
 
-  it('lista a stack', () => {
+  it('lista a stack, cada tecnologia com o seu ícone', () => {
     renderAt('/perfil')
 
     const stack = screen.getByRole('list', { name: 'Stack' })
-    const itens = within(stack).getAllByRole('listitem').map((li) => li.textContent)
-    expect(itens).toEqual(['JavaScript', 'Node.js', 'React', 'PostgreSQL', 'FullStack'])
+    const itens = within(stack).getAllByRole('listitem')
+    expect(itens.map((li) => li.textContent)).toEqual([
+      'JavaScript',
+      'Node.js',
+      'React',
+      'PostgreSQL',
+      'FullStack',
+    ])
+    for (const item of itens) {
+      expect(item.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
+    }
   })
 })

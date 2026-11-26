@@ -279,3 +279,10 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 - [X] T083 `useIntro` no `Leaf`: cola os `.cut` (mola em `rotateY` da ponta esquerda + sombra) e bate as letras; `cancel()` na limpeza (StrictMode)
 - [X] T084 Aplicar `<Type>` nos textos das 6 páginas; `.capa-title > span`; "·" da stack só no fim
 - [X] T085 Conferir no Chrome: fim da entrada ≤ 2 s em todas as rotas, nenhuma letra invisível no fim, 48 combinações sem rolagem, menos movimento sem animação
+
+## Phase 18: Stack do Perfil com ícones (FR-005)
+
+- [X] T086 Ícones da stack (`src/content/stackIcons.js`): JavaScript, Node.js, React e PostgreSQL do Simple Icons 16.38.1 (CC0), cores oficiais em tokens `--c-brand-*`; FullStack com desenho próprio
+- [X] T087 `<TechIcon>` e a stack em etiquetas (ícone + nome, contorno fino), sem os "·"; no celular, etiquetas mais justas para caber em duas linhas e manter a foto
+- [X] T088 Entrada: o ícone é carimbado (escala 1,6 → 1, mola curta) e a etiqueta surge quando o nome começa a ser batido (`INTRO.stamp`); teste do teto de 2 s
+- [X] T089 Conferir Perfil sem rolagem nas 8 telas, entrada ≤ 2 s, `npm run lint`, `npm test`, `npm run build`

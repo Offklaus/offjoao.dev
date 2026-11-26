@@ -1,19 +1,11 @@
 /* Entrada da página (src/motion): enquanto a entrada vai rodar, letras e papéis começam
    invisíveis já na primeira pintura; o useIntro anima cada um até a opacidade 1. */
+/* Um item com ícone (etiqueta da stack) surge inteiro quando o ícone é carimbado */
 .content[data-intro] [data-type] > span,
+.content[data-intro] [data-stamp],
+.content[data-intro] :has(> [data-stamp]),
 .content[data-intro] .cut > span {
   opacity: 0;
-}
-
-/* Os "·" da stack vêm do CSS: aparecem só quando as palavras já foram batidas */
-.content[data-intro] .stack-list li::after {
-  animation: intro-sep 1ms step-end 1.9s both;
-}
-
-@keyframes intro-sep {
-  from {
-    opacity: 0;
-  }
 }
 
 /* O papel é colado a partir da ponta esquerda */
@@ -28,6 +20,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .content[data-intro] [data-type] > span,
+  .content[data-intro] [data-stamp],
+  .content[data-intro] :has(> [data-stamp]),
   .content[data-intro] .cut > span {
     opacity: 1;
   }

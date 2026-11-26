@@ -1,5 +1,6 @@
 import Cut from '../components/Cut'
 import Photo from '../components/Photo'
+import TechIcon from '../components/TechIcon'
 import Type from '../components/Type'
 import { perfil } from '../content/site'
 
@@ -36,6 +37,7 @@ export default function Perfil() {
             <ul className="stack-list" aria-labelledby="stack-titulo">
               {perfil.stack.map((tech) => (
                 <li key={tech}>
+                  <TechIcon name={tech} />
                   <Type text={tech} />
                 </li>
               ))}

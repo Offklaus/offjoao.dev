@@ -25,6 +25,12 @@ export const INTRO = {
     strike: 0.04,
     lastStart: 1.2,
   },
+  // ícone ao lado de um texto (ex.: stack do Perfil): carimbado quando o texto começa
+  stamp: {
+    from: 1.6,
+    settle: 0.3,
+    bounce: 0.2,
+  },
 }
 
 /** Início (s) da colagem de cada papel, para que todos assentem dentro do teto. */
