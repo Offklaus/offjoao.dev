@@ -1,7 +1,7 @@
 # offjoão.dev — Portfólio "Revista 2002"
 
-Portfólio pessoal em formato de revista de cinco páginas (Capa, Perfil, Matéria de capa,
-Projetos e Contato), com letras recortadas de papel, fotos com contorno fino, a foto da capa sem fundo e navegação
+Portfólio pessoal em formato de revista de seis páginas (Capa, Perfil, Matéria de capa,
+Projetos, Roadmap e Contato), com letras recortadas de papel, fotos com contorno fino, a foto da capa sem fundo e navegação
 de "folhear". Feito com **Vite + React** a partir do design "Portfólio — Revista 2002".
 
 ## Rodar
@@ -41,6 +41,9 @@ mexer nos componentes.
 - [x] AdoPet: link e print (`public/projetos/adopet.webp`)
 - AdoPet e Salon Beauty estão sem link por enquanto (`url: null`); os três projetos têm a
   etiqueta "Em produção" (`status` em `projetos`)
+- Roadmap (`roadmap`): disciplinas do AVA da UNINTER e a carreira da Alura. O progresso
+  de cada curso (`progresso`, de 0 a 100) é copiado à mão da Alura: 100 marca a caixa,
+  entre 1 e 99 mostra "Estudando agora" com a porcentagem
 - [x] GitHub e LinkedIn (`contatos`)
 - [x] PDF do currículo (`public/curriculo-joao-victor-pereira-ribeiro.pdf`)
 - [x] E-mail (`contatos`)
@@ -52,7 +55,7 @@ src/
 ├── content/      # site.js (conteúdo) e navigation.js (ordem/folio)
 ├── styles/       # tokens, base, peças de papel e layout das páginas
 ├── components/   # Layout, Masthead, PageTurn, Cut, Photo, SmartLink
-├── pages/        # Capa, Perfil, Destaque, Projetos, Contato, NaoEncontrada
+├── pages/        # Capa, Perfil, Destaque, Projetos, Roadmap, Contato, NaoEncontrada
 └── test/         # setup do Vitest e helper renderAt
 ```
 

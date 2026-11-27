@@ -305,3 +305,12 @@ Task: "Componente Cut em src/components/Cut.jsx"   (T010)
 - [X] T097 AdoPet e Salon Beauty sem link (`url: null`); `status: 'Em produção'` nos três projetos em `src/content/site.js`
 - [X] T098 Etiqueta `.selo` no canto de cima do print (papel claro, inclinada, menor no celular), carimbada na entrada (`data-stamp` + `<Type>`) em `src/pages/Projetos.jsx` e `src/styles/pages.css`; testes em `src/pages/Projetos.test.jsx`
 - [X] T099 Conferir `/projetos` nas 8 telas (sem rolagem, etiqueta dentro da tela, 1 link), com menos movimento, e entrada ≤ 2 s
+
+## Phase 22: Roadmap de estudos (US7, FR-020, constituição 1.2.0)
+
+- [X] T100 Design aprovado no canvas (pranchas Roadmap · Concluído e Cursando agora, computador e celular); exceção de rolagem na constituição (1.2.0), US7/FR-020 na spec, rota em `contracts/routes.md`, entidade em `data-model.md`
+- [X] T101 Testes primeiro em `src/pages/Roadmap.test.jsx`: abas (padrão, clique, setas, `?aba=cursando`), 46 disciplinas por ano/módulo sem extensionistas/reprovações/estágio, coluna da faculdade e da Alura com o estado de cada curso; folios /06 em `App.test.jsx` e `PageTurn.test.jsx`
+- [X] T102 Conteúdo `roadmap` e a página `roadmap` (entre Projetos e Contato) em `src/content/site.js`; `src/pages/Roadmap.jsx` registrado em `src/pages/views.js`
+- [X] T103 Linha do tempo em `src/styles/pages.css`: trilho no meio e módulos alternando no computador, trilho à esquerda no celular; duas colunas em Cursando agora; tokens `--c-ink-faint`, `--c-rule-faint`, `--c-ink-wash`
+- [X] T104 Rolagem só no `<main>` do Roadmap e animação leve ligada à rolagem (`animation-timeline: view()`/`scroll()`), parada com `prefers-reduced-motion`; recortes da linha do tempo fora da colagem de entrada (`data-intro-skip` no `useIntro` e em `intro.css`)
+- [X] T105 Conferir no navegador: as outras páginas continuam sem rolagem nas 8 telas, Roadmap sem rolagem horizontal, abas por teclado, menu com 5 itens no celular, entrada ≤ 2 s; `npm run lint`, `npm test`, `npm run build`

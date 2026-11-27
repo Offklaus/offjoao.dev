@@ -1,8 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 → 1.1.1 (PATCH: fotos sem borda rasgada nem fita, Princípio I)
-- Modified principles: nenhum renomeado
-- Added principles: VI. Uma Página, Uma Tela
+- Version change: 1.1.1 → 1.2.0 (MINOR: exceção do Roadmap no Princípio VI)
+- Modified principles: VI. Uma Página, Uma Tela (a página Roadmap pode rolar dentro da
+  área de conteúdo, a pedido do dono em 2026-11-27)
+- Added principles: nenhum
 - Added sections: nenhuma
 - Removed sections: nenhuma
 - Templates: plan/spec/tasks leem esta constituição em tempo de execução; nenhum alterado
@@ -83,6 +84,9 @@ que o dono entende de ponta a ponta.
   elemento elástico e cedem espaço ao texto.
 - Conteúdo nunca é cortado: só abaixo do tamanho mínimo suportado ou com zoom do
   navegador a área de conteúdo pode rolar, como último recurso (o Princípio III prevalece).
+- Exceção: a página Roadmap (linha do tempo de estudos) PODE rolar, só dentro da área de
+  conteúdo; cabeçalho e rodapé de folhear continuam na tela. A rolagem tem no máximo uma
+  animação leve, parada com `prefers-reduced-motion`, e nada rola na horizontal.
 - Toda mudança visual é conferida medindo a sobra de altura de cada página em
   1920×1080, 1440×900, 1366×657, 1280×720, 768×1024, 390×664 e 360×640.
 
@@ -122,4 +126,4 @@ página impressa, e rolar quebra essa leitura.
 - Toda violação justificada vai na tabela "Complexity Tracking" do plano da feature.
 - Revisão de conformidade: ao final de cada feature, conferir os seis princípios.
 
-**Version**: 1.1.1 | **Ratified**: 2026-11-18 | **Last Amended**: 2026-11-25
+**Version**: 1.2.0 | **Ratified**: 2026-11-18 | **Last Amended**: 2026-11-27

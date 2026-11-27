@@ -12,8 +12,9 @@ Seguir a metodologia Spec-Driven Development."
 
 ## User Scenarios & Testing *(mandatory)*
 
-O portfólio é uma "revista" de cinco páginas: 01 Capa, 02 Perfil, 03 Matéria de capa,
-04 Projetos e 05 Contato. O visitante típico é um recrutador, cliente ou colega que chega
+O portfólio é uma "revista" de seis páginas: 01 Capa, 02 Perfil, 03 Matéria de capa,
+04 Projetos, 05 Roadmap e 06 Contato. *(Revisão 2026-11-27: Roadmap entra entre Projetos e
+Contato.)* O visitante típico é um recrutador, cliente ou colega que chega
 por um link (LinkedIn, currículo, GitHub) e quer saber, rápido, quem é o João, o que ele
 já construiu e como falar com ele.
 
@@ -47,21 +48,21 @@ frase e foto (ou o espaço da foto) aparecem e que o menu leva às outras págin
 
 O visitante navega entre as páginas como quem folheia uma revista: pelo menu do topo
 ou pelos controles "← Anterior" e "Próxima →" no rodapé, que mostram o número da página
-("02 / 05"). A página atual fica destacada no menu.
+("02 / 06"). A página atual fica destacada no menu.
 
-**Why this priority**: é o que conecta as cinco páginas e dá a identidade de revista;
+**Why this priority**: é o que conecta as seis páginas e dá a identidade de revista;
 sem navegação o conteúdo fica inacessível.
 
 **Independent Test**: a partir da capa, clicar "Próxima →" quatro vezes e conferir que
-cada página aparece na ordem com o folio certo; na última, o botão volta à capa.
+cada página aparece na ordem com o folio certo (cinco vezes, com o Roadmap); na última, o botão volta à capa.
 
 **Acceptance Scenarios**:
 
 1. **Given** a capa, **When** o visitante aciona "Próxima →", **Then** abre o Perfil com o
-   folio "02 / 05".
+   folio "02 / 06".
 2. **Given** a capa, **When** o visitante olha o rodapé, **Then** "← Anterior" aparece
    desativado.
-3. **Given** a página Contato (05 / 05), **When** o visitante aciona "Voltar à capa ↺",
+3. **Given** a página Contato (06 / 06), **When** o visitante aciona "Voltar à capa ↺",
    **Then** abre a capa.
 4. **Given** qualquer página, **When** o visitante escolhe um item do menu, **Then** abre a
    página correspondente e esse item fica marcado como página atual.
@@ -162,6 +163,44 @@ número, nome e descrição; cartões com link levam ao projeto.
 
 ---
 
+### User Story 7 - Ver o roadmap de estudos (Priority: P2)
+
+Na página Roadmap ("Roadmap de estudos"), o visitante vê o que o João já estudou e o que
+está estudando agora, numa linha do tempo de cima para baixo, com caixas de seleção. Duas
+abas separam o roadmap: "Concluído" mostra as disciplinas aprovadas da faculdade (UNINTER,
+de 2023 a 2026), por ano e módulo; "Cursando agora" mostra a faculdade à esquerda (o
+módulo em curso) e, à direita, a carreira Engenharia de Agentes de IA da Alura, com o
+estado de cada curso. *(Pedido de 2026-11-27: "uma aba onde eu vou colocar meu roadmap do
+que eu ja Estudei, e o que estou estudando no momento [...] e tende check box"; "o road
+map eu quero de cima pra baixo, onde tenha uma linha do tempo"; "Faça com que tenha uma
+animação leve de scroll"; "deixa separado o roadmap do que ja esta concluido do que estou
+cursando [...] o lado direito pro curso da alura, e o esquerdo para da faculdade". Dados
+do AVA sem atividades extensionistas, reprovações, estágio e atividades complementares.)*
+
+**Why this priority**: mostra a formação e o estudo contínuo, que reforçam o perfil de
+quem procura estágio, sem substituir os projetos.
+
+**Independent Test**: abrir /roadmap, conferir as 46 disciplinas por ano na aba
+"Concluído", trocar para "Cursando agora" e conferir as duas disciplinas em curso e os
+cursos da Alura com o estado de cada um.
+
+**Acceptance Scenarios**:
+
+1. **Given** a página Roadmap, **When** carrega, **Then** a aba "Concluído" está
+   selecionada e mostra as disciplinas aprovadas de 2023 a 2026, por módulo, cada uma com
+   a caixa marcada.
+2. **Given** a aba "Concluído", **When** o visitante aciona "Cursando agora" (clique ou
+   setas do teclado), **Then** aparecem a coluna da faculdade (disciplinas em curso) e a da
+   Alura (níveis e cursos, cada um concluído, estudando agora com a porcentagem, ou a
+   fazer).
+3. **Given** o endereço `/roadmap?aba=cursando`, **When** abre, **Then** a aba "Cursando
+   agora" já vem selecionada.
+4. **Given** a linha do tempo maior que a tela, **When** o visitante rola, **Then** só a
+   área de conteúdo rola (cabeçalho e rodapé ficam), cada cartão aparece subindo de leve e
+   a linha do trilho se preenche; com `prefers-reduced-motion`, nada se move.
+
+---
+
 ### Edge Cases
 
 - Endereço inexistente (ex.: `/qualquer-coisa`): mostra uma página "não encontrada" no
@@ -175,6 +214,7 @@ número, nome e descrição; cartões com link levam ao projeto.
   na tela; a foto é o que encolhe primeiro.
 - Tela abaixo de 360×640 ou zoom do navegador: o conteúdo nunca é cortado; só então a área
   de conteúdo pode rolar, como último recurso de acessibilidade.
+- Navegador sem animação ligada à rolagem: o roadmap aparece inteiro e parado.
 - Fontes da web demoram ou falham: o texto aparece imediatamente com fontes de sistema
   equivalentes.
 
@@ -182,12 +222,12 @@ número, nome e descrição; cartões com link levam ao projeto.
 
 ### Functional Requirements
 
-- **FR-001**: O site MUST ter cinco páginas, cada uma com endereço próprio e
-  compartilhável: Capa, Perfil, Destaque, Projetos e Contato.
+- **FR-001**: O site MUST ter seis páginas, cada uma com endereço próprio e
+  compartilhável: Capa, Perfil, Destaque, Projetos, Roadmap e Contato.
 - **FR-002**: Toda página MUST exibir o cabeçalho com a marca "offjoão.dev" (link para a
-  capa) e o menu com Perfil, Destaque, Projetos e Contato, marcando a página atual.
+  capa) e o menu com Perfil, Destaque, Projetos, Roadmap e Contato, marcando a página atual.
 - **FR-003**: Toda página MUST exibir o rodapé de folhear com "← Anterior", o folio
-  "NN / 05" e "Próxima →"; na capa "Anterior" fica desativado e na página 05 o avanço
+  "NN / 06" e "Próxima →"; na capa "Anterior" fica desativado e na página 06 o avanço
   vira "Voltar à capa ↺".
 - **FR-004**: A capa MUST exibir o nome (João Victor), a área, a frase de
   apresentação e foto.
@@ -227,7 +267,8 @@ número, nome e descrição; cartões com link levam ao projeto.
   A entrada do conteúdo voltou em 2026-11-25 como FR-019.)*
 - **FR-016**: Cada página MUST caber inteira na tela, sem rolagem, em telas de 360×640 a
   1920×1080 pixels: textos se ajustam ao tamanho da tela e fotos encolhem para dar lugar
-  ao texto. *(Revisão 2026-11-18: "realinhe o design pra não ter scroll na página".)*
+  ao texto. *(Revisão 2026-11-18: "realinhe o design pra não ter scroll na página".)* Exceção desde
+  2026-11-27: o Roadmap rola dentro da área de conteúdo (FR-020).
 - ~~FR-017 / FR-018~~: virada de página animada e arraste da ponta — **removidos em
   2026-11-23** a pedido do dono (ver FR-015).
 - **FR-019**: Ao abrir cada página, o conteúdo MUST entrar em no máximo 2 s, com os mesmos
@@ -240,14 +281,27 @@ número, nome e descrição; cartões com link levam ao projeto.
   "parece que esta colando ela por inteira" — a colagem passa a ser uma passada contínua,
   em velocidade constante, que assenta os papéis da ponta esquerda à direita, um emendado
   no outro, com uma dobra marcando onde o papel está sendo pressionado.)*
+- **FR-020**: A página Roadmap MUST mostrar o roadmap de estudos em linha do tempo
+  vertical, com duas abas usáveis por teclado: "Concluído" (selecionada ao abrir) e
+  "Cursando agora" (`?aba=cursando` abre direto nela). Concluído: as disciplinas aprovadas
+  da faculdade por ano e módulo, com a caixa marcada. Cursando agora: a faculdade à
+  esquerda e a carreira da Alura à direita (no celular, uma embaixo da outra), cada curso
+  com o seu estado — concluído (caixa marcada), estudando agora (borda tracejada e a
+  porcentagem feita) ou a fazer (contorno apagado). É a única página que rola, só na área
+  de conteúdo, com uma animação leve (cada cartão sobe ao entrar na tela e a linha do
+  trilho se preenche) que para com `prefers-reduced-motion`. O título é colado na entrada
+  como nas outras páginas; a linha do tempo não entra na colagem.
 
 ### Key Entities
 
-- **Página da revista**: número (01–05), nome, endereço, título da aba, página anterior e
+- **Página da revista**: número (01–06), nome, endereço, título da aba, página anterior e
   próxima.
 - **Projeto**: número, nome, descrição curta, imagem (opcional), link (opcional),
   destaque (sim/não). O destaque tem ainda subtítulo, resumo, tipo e tecnologias.
 - **Perfil**: nome, área, formação, frases de apresentação, stack.
+- **Roadmap**: disciplinas da faculdade (ano, módulo, nome; concluídas e em curso) e a
+  carreira da Alura (níveis com cursos: título, subtítulo e progresso de 0 a 100%, mais os
+  checkpoints).
 - **Canal de contato**: tipo (E-mail, GitHub, LinkedIn, Currículo), rótulo visível,
   destino.
 

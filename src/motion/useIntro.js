@@ -13,7 +13,9 @@ export function useIntro(rootRef, enabled) {
 
     const running = []
     try {
-      const cuts = Array.from(root.querySelectorAll('.cut'))
+      // [data-intro-skip]: partes fora da colagem (ex.: os painéis de abas do Roadmap, que
+      // trocam depois da entrada); intro.css também não as esconde
+      const cuts = Array.from(root.querySelectorAll('.cut')).filter((cut) => !cut.closest('[data-intro-skip]'))
       // largura de layout (sem a inclinação); medida de novo quando as fontes chegam
       const measure = () => cuts.map((cut) => cut.offsetWidth)
       let widths = measure()

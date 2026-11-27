@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { renderAt } from './test/renderAt'
 
 describe('US2 · Folhear a revista', () => {
-  it('percorre as cinco páginas com Próxima e volta à capa', async () => {
+  it('percorre as seis páginas com Próxima e volta à capa', async () => {
     const user = userEvent.setup()
     renderAt('/')
 
-    for (const folio of ['02 / 05', '03 / 05', '04 / 05', '05 / 05']) {
+    for (const folio of ['02 / 06', '03 / 06', '04 / 06', '05 / 06', '06 / 06']) {
       await user.click(screen.getByRole('link', { name: 'Próxima' }))
       expect(screen.getByText(folio)).toBeInTheDocument()
     }
@@ -28,7 +28,7 @@ describe('US2 · Folhear a revista', () => {
     renderAt('/projetos')
 
     expect(screen.getByRole('heading', { level: 1, name: 'Outras obras' })).toBeInTheDocument()
-    expect(screen.getByText('04 / 05')).toBeInTheDocument()
+    expect(screen.getByText('04 / 06')).toBeInTheDocument()
   })
 
   it('atualiza o título da aba', () => {

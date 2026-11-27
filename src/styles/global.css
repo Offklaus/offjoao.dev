@@ -279,10 +279,11 @@ main:focus:not(:focus-visible) {
     gap: 0 2px;
   }
 
+  /* cinco itens (com o Roadmap) numa linha só até 360 px: ~311 px de 328 */
   .menu a {
-    padding: 0 7px;
+    padding: 0 5px;
     font-size: 11px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
   }
 
   .turnbar {

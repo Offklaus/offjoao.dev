@@ -16,13 +16,13 @@ Não há banco de dados nem estado mutável.
 
 | Campo | Tipo | Regra |
 |-------|------|-------|
-| `id` | `'capa' \| 'perfil' \| 'destaque' \| 'projetos' \| 'contato'` | único |
+| `id` | `'capa' \| 'perfil' \| 'destaque' \| 'projetos' \| 'roadmap' \| 'contato'` | único |
 | `path` | string | começa com `/`; único; a capa é `/` |
 | `label` | string | texto do menu e do título da aba |
 | `inMenu` | boolean | a capa não aparece no menu (a marca leva a ela) |
 
 **Derivados**: `number` = posição + 1, exibido com 2 dígitos ("02"); total = tamanho da
-lista ("05"); `prev`/`next` = vizinhos na lista. A última página aponta `next` para a capa
+lista ("06"); `prev`/`next` = vizinhos na lista. A última página aponta `next` para a capa
 com o rótulo "Voltar à capa ↺"; a primeira não tem `prev`.
 
 ## Image
@@ -56,6 +56,24 @@ com o rótulo "Voltar à capa ↺"; a primeira não tem `prev`.
 `destaque` acrescenta: `kicker`, `titulo: string[3]`, `subtitulo`, `resumo`, `tipo`,
 `stack`, `repo: { label: string, href: string | null }` (o rótulo fica entre colchetes
 enquanto `href` for `null`).
+
+## Roadmap (`roadmap`)
+
+| Campo | Tipo | Regra |
+|-------|------|-------|
+| `titulo` | `string[2]` | os dois recortes do título ("Roadmap", "de estudos") |
+| `faculdade.nome`, `faculdade.curso` | string | "UNINTER", "Engenharia de Software" |
+| `faculdade.concluidas` | `{ ano, modulos: { modulo, disciplinas: string[] }[] }[]` | do mais antigo ao mais novo; só aprovadas, sem atividades extensionistas nem reprovações |
+| `faculdade.cursando` | `{ ano, modulo, disciplinas: string[] }` | o módulo em curso, sem estágio nem atividades complementares |
+| `alura.nome`, `alura.carreira` | string | "Alura", "Engenharia de Agentes de IA" |
+| `alura.niveis` | `{ nome, sobre, cursos }[]` | na ordem da carreira (Base, Nível 1, 2 e 3) |
+| `cursos[].titulo`, `cursos[].sub` | string | como na página da carreira |
+| `cursos[].progresso` | número 0–100 | 100 = concluído, 1–99 = estudando agora (mostra a %), 0 = a fazer |
+| `cursos[].checkpoint` | boolean | atividade de fim de nível; não conta como curso |
+
+**Derivados**: total de disciplinas concluídas (hoje 46); cursos da Alura concluídos e em
+andamento sobre o total sem checkpoints (hoje 1 e 1 de 24). O progresso não se atualiza
+sozinho: é copiado da Alura para `site.js`.
 
 ## ContactChannel (`contatos`, lista ordenada)
 

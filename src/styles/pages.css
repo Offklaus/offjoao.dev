@@ -642,3 +642,587 @@ a.channel:hover .channel-label {
     align-self: center;
   }
 }
+
+/* ------------------------------------------------------------------------------------
+   Roadmap (src/pages/Roadmap.jsx): a única página que rola (constituição 1.2.0). Só o
+   <main> rola; cabeçalho e rodapé ficam. Linha do tempo de cima para baixo: trilho no
+   meio com os módulos alternando (aba Concluído, ≥ 861px) ou trilho à esquerda (celular
+   e as duas colunas de Cursando agora).
+   ------------------------------------------------------------------------------------ */
+.sheet--scroll {
+  flex: none;
+}
+
+.roadmap-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+}
+
+/* Abas: a selecionada fica preenchida, como o item atual do menu */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 18px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: inherit;
+  color: var(--c-ink);
+  background: transparent;
+  border: 2px solid var(--c-ink);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background: var(--c-ink-halo);
+}
+
+.tabs button[aria-selected='true'] {
+  color: var(--c-dark);
+  background: var(--c-ink);
+  text-shadow: none;
+}
+
+.roadmap-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sheet);
+}
+
+.roadmap-panel[hidden] {
+  display: none;
+}
+
+.roadmap-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+}
+
+.roadmap-meta .kicker {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+}
+
+.tl-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Caixa de seleção: marcada (já estudei), vazia (estudando agora), apagada (a fazer) */
+.tl-check {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.tl-check rect {
+  fill: none;
+  stroke: var(--c-ink);
+  stroke-width: 2;
+}
+
+.tl-check path {
+  fill: none;
+  stroke: var(--c-dark);
+  stroke-width: 2.4;
+  stroke-linecap: square;
+}
+
+.tl-check.is-done rect {
+  fill: var(--c-ink);
+}
+
+.tl-card.is-done .tl-check rect {
+  fill: var(--c-dark);
+  stroke: var(--c-dark);
+}
+
+.tl-card.is-done .tl-check path {
+  stroke: var(--c-paper-white);
+}
+
+.tl-check.is-todo rect {
+  stroke: var(--c-rule-faint);
+}
+
+/* A linha do tempo. --tl-line = altura do meio da primeira linha de cada cartão, onde
+   chegam as ligações do selo. */
+.tl {
+  --tl-line: 22px;
+  --tl-gap: 8px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-bottom: 28px;
+}
+
+.tl--zigzag {
+  gap: 48px;
+}
+
+/* Trilho cinza, a linha clara que se preenche com a rolagem e o ponto do fim */
+.tl::before,
+.tl-fill {
+  content: '';
+  position: absolute;
+  top: 24px;
+  bottom: 6px;
+  left: 19px;
+  display: block;
+  width: 2px;
+  background: var(--c-rule);
+}
+
+.tl-fill {
+  background: var(--c-ink);
+}
+
+.tl::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  background: var(--c-ink);
+}
+
+.tl-year,
+.tl-level {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tl-level {
+  gap: 18px;
+}
+
+.tl-marker {
+  position: relative;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1;
+}
+
+.tl-level-head {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.tl-level-head .kicker {
+  margin: 0;
+}
+
+.tl-mods,
+.tl-cards {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tl-mods {
+  gap: 16px;
+}
+
+.tl-cards {
+  gap: var(--tl-gap);
+}
+
+/* Módulo: selo no trilho e os cartões à direita, ligados por um colchete */
+.tl-mod {
+  position: relative;
+  padding-left: 56px;
+}
+
+.tl-mod::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--tl-line) - 1px);
+  left: 40px;
+  width: 16px;
+  height: 2px;
+  background: var(--c-rule);
+}
+
+.tl-badge {
+  position: absolute;
+  top: calc(var(--tl-line) - 11px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 22px;
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--c-ink);
+  background: var(--c-dark);
+  border: 2px solid var(--c-ink);
+  text-shadow: none;
+}
+
+.tl-badge.is-now {
+  border-style: dashed;
+}
+
+.tl-badge.is-todo {
+  color: var(--c-ink-faint);
+  border-color: var(--c-rule-faint);
+}
+
+.tl-item {
+  position: relative;
+}
+
+.tl-item:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--tl-line) - 1px);
+  left: -8px;
+  width: 8px;
+  height: 2px;
+  background: var(--c-rule);
+}
+
+.tl-item:not(:only-child)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: calc(-1 * var(--tl-gap));
+  left: -9px;
+  width: 2px;
+  background: var(--c-rule);
+}
+
+.tl-item:first-child:not(:only-child)::after {
+  top: calc(var(--tl-line) - 1px);
+}
+
+.tl-item:last-child:not(:only-child)::after {
+  bottom: auto;
+  height: calc(var(--tl-line) + 1px);
+}
+
+/* Cartões */
+.tl-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 18px;
+  text-align: left;
+  text-shadow: none;
+  filter: drop-shadow(3px 4px 0 rgb(0 0 0 / 0.6));
+}
+
+.tl-card.is-done {
+  color: var(--c-dark);
+  background:
+    linear-gradient(var(--c-paper-white), var(--c-paper-white)) padding-box,
+    var(--c-paper-white-edge) border-box;
+  border: 3px solid transparent;
+}
+
+/* Estudando agora: o fundo enche até a porcentagem feita (--progress) */
+.tl-card.is-now {
+  color: var(--c-ink);
+  background: linear-gradient(90deg, var(--c-ink-wash) var(--progress, 0%), var(--c-dark) var(--progress, 0%));
+  border: 2px dashed var(--c-ink);
+}
+
+.tl-card.is-todo {
+  color: var(--c-ink-faint);
+  background: var(--c-dark);
+  border: 2px solid var(--c-rule-faint);
+  filter: none;
+}
+
+.tl-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tl-text b {
+  font-weight: 800;
+}
+
+.tl-sub {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+
+.tl-status {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Atalho para a aba Concluído, no fim da coluna da faculdade */
+.tl-link {
+  margin-top: 8px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.tl-link:hover {
+  transform: translateY(-2px);
+}
+
+.tl-link:hover .tl-status {
+  text-decoration: underline;
+}
+
+/* Cursando agora: faculdade e Alura, uma embaixo da outra; lado a lado a partir de 861px */
+.now-cols {
+  display: grid;
+  gap: 32px;
+}
+
+.now-rule {
+  border-top: 1px solid var(--c-rule);
+}
+
+.now-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.now-head .kicker {
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (min-width: 861px) {
+  .now-cols {
+    grid-template-columns: minmax(0, 3fr) 1px minmax(0, 4fr);
+    gap: 0 36px;
+    align-items: start;
+  }
+
+  .now-rule {
+    align-self: stretch;
+    border-top: 0;
+    border-left: 1px solid var(--c-rule);
+  }
+
+  /* Concluído: trilho no meio; cada módulo ocupa duas linhas da grade, uma a mais que o
+     anterior, e assim os módulos se alternam meio deslocados (esquerda, direita...) */
+  .tl--zigzag {
+    width: 100%;
+    max-width: 1120px;
+    margin-inline: auto;
+  }
+
+  .tl--zigzag::before,
+  .tl--zigzag .tl-fill {
+    left: calc(50% - 1px);
+  }
+
+  .tl--zigzag::after {
+    left: calc(50% - 6px);
+  }
+
+  .tl--zigzag .tl-marker {
+    text-align: center;
+  }
+
+  .tl--zigzag .tl-mods {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px 96px;
+  }
+
+  .tl--zigzag .tl-mod {
+    grid-row: var(--row) / span 2;
+    align-self: start;
+    padding-left: 0;
+  }
+
+  .tl--zigzag .tl-mod[data-side='l'] {
+    grid-column: 1;
+  }
+
+  .tl--zigzag .tl-mod[data-side='r'] {
+    grid-column: 2;
+  }
+
+  .tl--zigzag .tl-badge {
+    top: calc(var(--tl-line) - 12px);
+    width: 48px;
+    height: 24px;
+  }
+
+  .tl--zigzag [data-side='l'] > .tl-badge {
+    left: auto;
+    right: -72px;
+  }
+
+  .tl--zigzag [data-side='r'] > .tl-badge {
+    left: -72px;
+  }
+
+  .tl--zigzag [data-side='l']::before {
+    left: 100%;
+    width: 24px;
+  }
+
+  .tl--zigzag [data-side='r']::before {
+    left: auto;
+    right: 100%;
+    width: 24px;
+  }
+
+  .tl--zigzag [data-side='l'] .tl-item::before {
+    left: 100%;
+    width: 12px;
+  }
+
+  .tl--zigzag [data-side='r'] .tl-item::before {
+    left: auto;
+    right: 100%;
+    width: 12px;
+  }
+
+  .tl--zigzag [data-side='l'] .tl-item::after {
+    left: calc(100% + 11px);
+  }
+
+  .tl--zigzag [data-side='r'] .tl-item::after {
+    left: auto;
+    right: calc(100% + 11px);
+  }
+}
+
+@media (max-width: 560px) {
+  .tl {
+    --tl-line: 20px;
+    --tl-gap: 6px;
+  }
+
+  .tl-card {
+    gap: 8px;
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  .tl-card .tl-check {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tl-sub {
+    font-size: 12px;
+  }
+
+  /* o subtítulo do nível desce para baixo do recorte, alinhado aos cartões */
+  .tl-level-head .kicker {
+    flex-basis: 100%;
+    padding-left: 56px;
+  }
+
+  .tabs button {
+    padding: 0 14px;
+  }
+}
+
+/* Animação leve de rolagem: cada peça sobe 24 px e aparece enquanto entra na tela; a
+   linha clara do trilho acompanha a rolagem. Sem suporte ou com menos movimento, fica
+   tudo parado e visível. */
+@keyframes tl-rise {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+@keyframes tl-fill {
+  from {
+    scale: 1 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .tl-in {
+      animation: tl-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+
+    .tl-fill {
+      transform-origin: 50% 0;
+      animation: tl-fill linear both;
+      animation-timeline: scroll(nearest);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-link {
+    transition: none;
+  }
+}

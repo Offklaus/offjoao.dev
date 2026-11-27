@@ -14,7 +14,9 @@
    e à esquerda para a sombra); na frente dela, uma dobra sombreada com um fio de luz
    marca onde o papel está sendo pressionado, e some no último oitavo do papel. No fim,
    o useIntro tira o recorte. */
-.content[data-intro] .cut {
+/* [data-intro-skip] (painéis do Roadmap) fica fora da colagem: o que aparece ao trocar
+   de aba, depois da entrada, já vem inteiro */
+.content[data-intro] .cut:not([data-intro-skip] .cut) {
   --glue: 0;
   --glue-edge: calc(var(--glue) * 104% - 2%);
   --glue-fade: min(1, (1 - var(--glue)) * 8);
@@ -22,11 +24,11 @@
   clip-path: inset(-40% calc(100% - var(--glue-edge)) -40% -20%);
 }
 
-.content[data-intro] .cut > span {
+.content[data-intro] .cut:not([data-intro-skip] .cut) > span {
   position: relative;
 }
 
-.content[data-intro] .cut > span::after {
+.content[data-intro] .cut:not([data-intro-skip] .cut) > span::after {
   content: '';
   position: absolute;
   /* cobre também a borda colorida do papel (o recorte rasgado do span apara o excesso) */

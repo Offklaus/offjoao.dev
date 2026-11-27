@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { getTurn } from '../content/navigation'
 
-/** Rodapé "← Anterior · NN / 05 · Próxima →" (contracts/routes.md). A virada é do Book. */
+/** Rodapé "← Anterior · NN / 06 · Próxima →" (contracts/routes.md). A virada é do Book. */
 export default function PageTurn({ pageId }) {
   const turn = getTurn(pageId)
   if (!turn) return null

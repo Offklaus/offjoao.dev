@@ -144,7 +144,7 @@ src/
 ├── components/
 │   ├── Layout.jsx         # moldura da página + título + foco/scroll
 │   ├── Masthead.jsx       # marca + menu
-│   ├── PageTurn.jsx       # ← Anterior · NN / 05 · Próxima →
+│   ├── PageTurn.jsx       # ← Anterior · NN / 06 · Próxima →
 │   ├── Cut.jsx            # palavra recortada de papel
 │   ├── Photo.jsx          # foto/print com borda rasgada e fita
 │   └── SmartLink.jsx      # link interno/externo/ausente
@@ -153,6 +153,7 @@ src/
 │   ├── Perfil.jsx
 │   ├── Destaque.jsx
 │   ├── Projetos.jsx
+│   ├── Roadmap.jsx        # abas Concluído / Cursando agora + linha do tempo que rola
 │   ├── Contato.jsx
 │   └── NaoEncontrada.jsx
 └── test/
@@ -167,4 +168,6 @@ numa feature futura que exija servidor (ex.: formulário de contato), conforme P
 
 ## Complexity Tracking
 
-Nenhuma violação a justificar.
+| Violação | Por que é necessária | Alternativa mais simples rejeitada porque |
+|----------|----------------------|-------------------------------------------|
+| Princípio VI: o Roadmap rola (constituição 1.2.0 já traz a exceção) | 46 disciplinas e 24 cursos em linha do tempo, de cima para baixo, com animação de rolagem, a pedido do dono | Comprimir tudo numa tela deixaria os nomes ilegíveis e perderia a linha do tempo; só a área de conteúdo rola, a moldura da revista fica |

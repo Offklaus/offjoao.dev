@@ -18,6 +18,12 @@
   --c-ink-glow: rgb(242 239 232 / 0.55);
   --c-ink-halo: rgb(242 239 232 / 0.12);
 
+  /* Roadmap: "a fazer" apagado (texto 7,9:1 e contorno 3,4:1 sobre o papel escuro) e o
+     fundo que enche o cartão até a porcentagem feita */
+  --c-ink-faint: #a9a69f;
+  --c-rule-faint: #6b6964;
+  --c-ink-wash: rgb(242 239 232 / 0.16);
+
   /* Cores oficiais das marcas da stack (ícones do Perfil, src/content/stackIcons.js) */
   --c-brand-javascript: #f7df1e;
   --c-brand-node: #5fa04e;
